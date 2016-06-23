@@ -1,0 +1,41 @@
+// Mobile
+@media(max-width:767px){
+
+}
+
+@media(min-width:768px){}
+@media(min-width:992px){}
+@media(min-width:1200px){}
+
+
+body {
+
+}
+
+
+header {
+    text-align: center;
+  display:flex;
+  flex-flow: row wrap;
+  background-color: indigo;
+  padding:10px;
+  margin-bottom: 10px;
+  h1 {
+    color:gold;
+    transition: all 3s;
+
+    &:hover {
+        color:lightblue;
+        font-size: 3em;
+    }
+  }
+}
+
+footer {
+  background-color: black;
+  text-align: center;
+  color: #777;
+}
+
+@import 'passenger';
+
