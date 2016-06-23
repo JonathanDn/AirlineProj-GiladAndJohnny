@@ -50,12 +50,12 @@ Plane.save = function (formObj) {
     let plane;
     if (formObj.pid) {
         plane = Plane.findById(+formObj.pid);
-        plane.model = formObj.pmodel;
+        plane.model = formObj.pModel;
         plane.seatCount = formObj.pSeatCount;
         // not sure what this functionality looks like
         console.log('formObj.pSeatCount', formObj.pSeatCount);
     } else {
-        plane = new Plane(formObj.pmodel, formObj.pSeatCount);
+        plane = new Plane(formObj.pModel, formObj.pSeatCount);
         planes.push(plane);
     }
     Plane.planes = planes;
@@ -120,11 +120,11 @@ Plane.editPlane = function (pId, event) {
     if (pId) {
         let plane = Plane.findById(pId);
         $('#pid').val(plane.id);
-        $('#pmodel').val(plane.model);
+        $('#pModel').val(plane.Model);
         $('#pSeatCount').val(moment(plane.seatCount).format('YYYY-MM-DD'));
     } else {
         $('#pid').val('');
-        $('#pmodel').val('');
+        $('#pModel').val('');
         $('#pSeatCount').val('');
     }
 
