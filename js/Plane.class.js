@@ -11,8 +11,8 @@ function Plane(model, seatCount, id) {
 
 Plane.nextId = function () {
     let result = 1;
-    let jsonPassengers = Plane.loadJSONFromStorage();
-    if (jsonPassengers.length) result = jsonPassengers[jsonPassengers.length - 1].id + 1;
+    let jsonPlanes = Plane.loadJSONFromStorage();
+    if (jsonPlanes.length) result = jsonPlanes[jsonPlanes.length - 1].id + 1;
     return result;
 }
 
