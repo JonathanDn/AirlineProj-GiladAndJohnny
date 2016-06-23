@@ -121,7 +121,7 @@ Plane.editPlane = function (pId, event) {
         let plane = Plane.findById(pId);
         $('#pId').val(plane.id);
         $('#pModel').val(plane.Model);
-        $('#pSeatCount').val(moment(plane.seatCount).format('YYYY-MM-DD'));
+        $('#pSeatCount').val(plane.seatCount);
     } else {
         $('#pId').val('');
         $('#pModel').val('');
