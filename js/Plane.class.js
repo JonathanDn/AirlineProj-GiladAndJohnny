@@ -48,8 +48,8 @@ Plane.query = function () {
 Plane.save = function (formObj) {
     let planes = Plane.query();
     let plane;
-    if (formObj.pid) {
-        plane = Plane.findById(+formObj.pid);
+    if (formObj.pId) {
+        plane = Plane.findById(+formObj.pId);
         plane.model = formObj.pModel;
         plane.seatCount = formObj.pSeatCount;
         // not sure what this functionality looks like
