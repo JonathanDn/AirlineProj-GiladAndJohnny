@@ -39,7 +39,7 @@ Plane.query = function () {
     let jsonPlanes = Plane.loadJSONFromStorage();
 
     Plane.planes = jsonPlanes.map(jsonPlane => {
-        return new Plane(jsonPlane.name, jsonPlane.birthdate, jsonPlane.id);
+        return new Plane(jsonPlane.model, jsonPlane.seatCount, jsonPlane.id);
     })
 
     return Plane.planes;
@@ -50,10 +50,12 @@ Plane.save = function (formObj) {
     let plane;
     if (formObj.pid) {
         plane = Plane.findById(+formObj.pid);
-        plane.name = formObj.pname;
-        plane.birthdate = new Date(formObj.pdate);
+        plane.model = formObj.pmodel;
+        plane.seatCount = formObj.pSeatCount;
+        // not sure what this functionality looks like
+        console.log('formObj.pSeatCount', formObj.pSeatCount);
     } else {
-        plane = new Plane(formObj.pname, formObj.pdate);
+        plane = new Plane(formObj.pmodel, formObj.pSeatCount);
         planes.push(plane);
     }
     Plane.planes = planers;
@@ -77,9 +79,9 @@ Plane.render = function () {
     var strHtml = planes.map(p => {
         return `<tr onclick="Plane.select(${p.id}, this)">
             <td>${p.id}</td>
-            <td>${p.name}</td>
+            <td>${p.model}</td>
             <td>
-                ${moment(p.birthdate).format('DD-MM-YYYY')}
+                ${moment(p.seatCount).format('DD-MM-YYYY')}
                 ${(p.isBirthday()) ? '<i class="glyphicon glyphicon-gift"></i>' : ''}
             </td>
             <td>
@@ -101,7 +103,7 @@ Plane.select = function (pId, elRow) {
     $(elRow).addClass('active success');
     $('.details').show();
     let p = Plane.findById(pId);
-    $('.pDetailsName').html(p.name);
+    $('.pDetailsModel').html(p.model);
 }
 
 Plane.savePlane = function () {
@@ -119,12 +121,12 @@ Plane.editPlane = function (pId, event) {
     if (pId) {
         let plane = Plane.findById(pId);
         $('#pid').val(plane.id);
-        $('#pname').val(plane.name);
-        $('#pdate').val(moment(plane.birthdate).format('YYYY-MM-DD'));
+        $('#pmodel').val(plane.model);
+        $('#pSeatCount').val(moment(plane.seatCount).format('YYYY-MM-DD'));
     } else {
         $('#pid').val('');
-        $('#pname').val('');
-        $('#pdate').val('');
+        $('#pmodel').val('');
+        $('#pSeatCount').val('');
     }
 
     $('#modalPlane').modal('show');
