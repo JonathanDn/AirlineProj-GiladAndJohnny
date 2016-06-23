@@ -39,7 +39,7 @@ Plane.query = function () {
     let jsonPlanes = Plane.loadJSONFromStorage();
 
     Plane.planes = jsonPlanes.map(jsonPlane => {
-        return new Plane(jsonPlane.name, jsonPlane.birthdate, jsonPlane.id);
+        return new Plane(jsonPlane.model, jsonPlane.birthdate, jsonPlane.id);
     })
 
     return Plane.planes;
@@ -50,10 +50,10 @@ Plane.save = function (formObj) {
     let plane;
     if (formObj.pid) {
         plane = Plane.findById(+formObj.pid);
-        plane.name = formObj.pname;
+        plane.model = formObj.pmodel;
         plane.birthdate = new Date(formObj.pdate);
     } else {
-        plane = new Plane(formObj.pname, formObj.pdate);
+        plane = new Plane(formObj.pmodel, formObj.pdate);
         planes.push(plane);
     }
     Plane.planes = planers;
@@ -77,7 +77,7 @@ Plane.render = function () {
     var strHtml = planes.map(p => {
         return `<tr onclick="Plane.select(${p.id}, this)">
             <td>${p.id}</td>
-            <td>${p.name}</td>
+            <td>${p.model}</td>
             <td>
                 ${moment(p.birthdate).format('DD-MM-YYYY')}
                 ${(p.isBirthday()) ? '<i class="glyphicon glyphicon-gift"></i>' : ''}
@@ -101,7 +101,7 @@ Plane.select = function (pId, elRow) {
     $(elRow).addClass('active success');
     $('.details').show();
     let p = Plane.findById(pId);
-    $('.pDetailsName').html(p.name);
+    $('.pDetailsModel').html(p.model);
 }
 
 Plane.savePlane = function () {
@@ -119,11 +119,11 @@ Plane.editPlane = function (pId, event) {
     if (pId) {
         let plane = Plane.findById(pId);
         $('#pid').val(plane.id);
-        $('#pname').val(plane.name);
+        $('#pmodel').val(plane.model);
         $('#pdate').val(moment(plane.birthdate).format('YYYY-MM-DD'));
     } else {
         $('#pid').val('');
-        $('#pname').val('');
+        $('#pmodel').val('');
         $('#pdate').val('');
     }
 
