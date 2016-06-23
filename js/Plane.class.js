@@ -39,7 +39,7 @@ Plane.query = function () {
     let jsonPlanes = Plane.loadJSONFromStorage();
 
     Plane.planes = jsonPlanes.map(jsonPlane => {
-        return new Plane(jsonPlane.model, jsonPlane.birthdate, jsonPlane.id);
+        return new Plane(jsonPlane.model, jsonPlane.seatCount, jsonPlane.id);
     })
 
     return Plane.planes;
@@ -51,9 +51,11 @@ Plane.save = function (formObj) {
     if (formObj.pid) {
         plane = Plane.findById(+formObj.pid);
         plane.model = formObj.pmodel;
-        plane.birthdate = new Date(formObj.pdate);
+        plane.seatCount = formObj.pSeatCount;
+        // not sure what this functionality looks like
+        console.log('formObj.pSeatCount', formObj.pSeatCount);
     } else {
-        plane = new Plane(formObj.pmodel, formObj.pdate);
+        plane = new Plane(formObj.pmodel, formObj.pSeatCount);
         planes.push(plane);
     }
     Plane.planes = planers;
@@ -79,7 +81,7 @@ Plane.render = function () {
             <td>${p.id}</td>
             <td>${p.model}</td>
             <td>
-                ${moment(p.birthdate).format('DD-MM-YYYY')}
+                ${moment(p.seatCount).format('DD-MM-YYYY')}
                 ${(p.isBirthday()) ? '<i class="glyphicon glyphicon-gift"></i>' : ''}
             </td>
             <td>
@@ -120,11 +122,11 @@ Plane.editPlane = function (pId, event) {
         let plane = Plane.findById(pId);
         $('#pid').val(plane.id);
         $('#pmodel').val(plane.model);
-        $('#pdate').val(moment(plane.birthdate).format('YYYY-MM-DD'));
+        $('#pSeatCount').val(moment(plane.seatCount).format('YYYY-MM-DD'));
     } else {
         $('#pid').val('');
         $('#pmodel').val('');
-        $('#pdate').val('');
+        $('#pSeatCount').val('');
     }
 
     $('#modalPlane').modal('show');
