@@ -81,8 +81,7 @@ Plane.render = function () {
             <td>${p.id}</td>
             <td>${p.model}</td>
             <td>
-                ${moment(p.seatCount).format('DD-MM-YYYY')}
-                ${(p.isBirthday()) ? '<i class="glyphicon glyphicon-gift"></i>' : ''}
+                ${p.seatCount}
             </td>
             <td>
                 <button class="btn btn-danger" onclick="Plane.remove(${p.id}, event)">
