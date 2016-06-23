@@ -1,5 +1,7 @@
 'use strict';
 
+const KEY_PLANES = 'planes';
+
 // This is a constructor function
 function Plane(model, seatCount, id) {
     this.model = model;
