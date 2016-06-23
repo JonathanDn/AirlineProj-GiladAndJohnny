@@ -58,7 +58,7 @@ Plane.save = function (formObj) {
         plane = new Plane(formObj.pmodel, formObj.pSeatCount);
         planes.push(plane);
     }
-    Plane.planes = planers;
+    Plane.planes = planes;
     saveToStorage(KEY_PLANES, planes);
 }
 
