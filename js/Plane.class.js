@@ -9,7 +9,7 @@ function Plane(model, seatCount, id) {
     this.id = (id) ? id : Plane.nextId();
 }
 
-// static methods:
+// static methods:   
 
 Plane.nextId = function () {
     let result = 1;
