@@ -114,6 +114,7 @@ Passenger.savePassenger = function () {
     Passenger.render();
     $('#modalPassenger').modal('hide');
 }
+
 Passenger.editPassenger = function (pId, event) {
     if (event) event.stopPropagation();
     if (pId) {
