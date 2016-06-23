@@ -18,61 +18,61 @@ Plane.nextId = function () {
 
 Plane.findById = function (pId) {
     let result = null;
-    let passengers = Plane.query()
+    let planes = Plane.query()
         .filter(p => p.id === pId);
-    if (passengers.length) result = passengers[0];
+    if (planes.length) result = planes[0];
     return result;
 }
 
 Plane.loadJSONFromStorage = function () {
-    let passengers = getFromStorage(KEY_PASSENGERS);
-    if (!passengers) passengers = [];
-    return passengers;
+    let planes = getFromStorage(KEY_PLANES);
+    if (!planes) planes = [];
+    return planes;
 }
 
 
 Plane.query = function () {
 
-    if (Plane.passengers) return Passenger.passengers;
-    let jsonPassengers = Plane.loadJSONFromStorage();
+    if (Plane.planes) return Plane.planes;
+    let jsonPlanes = Plane.loadJSONFromStorage();
 
-    Plane.passengers = jsonPassengers.map(jsonPassenger => {
-        return new Plane(jsonPassenger.name, jsonPassenger.birthdate, jsonPassenger.id);
+    Plane.planes = jsonPlanes.map(jsonPlane => {
+        return new Plane(jsonPlane.name, jsonPlane.birthdate, jsonPlane.id);
     })
 
-    return Plane.passengers;
+    return Plane.planes;
 }
 
 Plane.save = function (formObj) {
-    let passengers = Plane.query();
-    let passenger;
+    let planes = Plane.query();
+    let plane;
     if (formObj.pid) {
-        passenger = Plane.findById(+formObj.pid);
-        passenger.name = formObj.pname;
-        passenger.birthdate = new Date(formObj.pdate);
+        plane = Plane.findById(+formObj.pid);
+        plane.name = formObj.pname;
+        plane.birthdate = new Date(formObj.pdate);
     } else {
-        passenger = new Plane(formObj.pname, formObj.pdate);
-        passengers.push(passenger);
+        plane = new Plane(formObj.pname, formObj.pdate);
+        planes.push(plane);
     }
-    Plane.passengers = passengers;
-    saveToStorage(KEY_PASSENGERS, passengers);
+    Plane.planes = planers;
+    saveToStorage(KEY_PLANES, planes);
 }
 
 
 Plane.remove = function (pId, event) {
     event.stopPropagation();
-    let passengers = Plane.query();
-    passengers = passengers.filter(p => p.id !== pId)
-    saveToStorage(KEY_PASSENGERS, passengers);
-    Plane.passengers = passengers;
+    let planes = Plane.query();
+    planes = planes.filter(p => p.id !== pId)
+    saveToStorage(KEY_PLANES, planes);
+    Plane.planes = planes;
     Plane.render();
 }
 
 
 Plane.render = function () {
 
-    let passengers = Plane.query();
-    var strHtml = passengers.map(p => {
+    let planes = Plane.query();
+    var strHtml = planes.map(p => {
         return `<tr onclick="Plane.select(${p.id}, this)">
             <td>${p.id}</td>
             <td>${p.name}</td>
@@ -84,14 +84,14 @@ Plane.render = function () {
                 <button class="btn btn-danger" onclick="Plane.remove(${p.id}, event)">
                     <i class="glyphicon glyphicon-trash"></i>
                 </button>
-                 <button class="btn btn-info" onclick="Plane.editPassenger(${p.id}, event)">
+                 <button class="btn btn-info" onclick="Plane.editPlane(${p.id}, event)">
                     <i class="glyphicon glyphicon-edit"></i>
                 </button>
             </td>
         </tr>`
 
     }).join(' ');
-    $('.tblPassengers').html(strHtml);
+    $('.tblPlanes').html(strHtml);
 }
 
 Plane.select = function (pId, elRow) {
@@ -108,22 +108,22 @@ Plane.savePlane = function () {
 
     Plane.save(formObj);
     Plane.render();
-    $('#modalPassenger').modal('hide');
+    $('#modalPlane').modal('hide');
 }
 
 
 Plane.editPlane = function (pId, event) {
     if (event) event.stopPropagation();
     if (pId) {
-        let passenger = Plane.findById(pId);
-        $('#pid').val(passenger.id);
-        $('#pname').val(passenger.name);
-        $('#pdate').val(moment(passenger.birthdate).format('YYYY-MM-DD'));
+        let plane = Plane.findById(pId);
+        $('#pid').val(plane.id);
+        $('#pname').val(plane.name);
+        $('#pdate').val(moment(plane.birthdate).format('YYYY-MM-DD'));
     } else {
         $('#pid').val('');
         $('#pname').val('');
         $('#pdate').val('');
     }
 
-    $('#modalPassenger').modal('show');
+    $('#modalPlane').modal('show');
 }
