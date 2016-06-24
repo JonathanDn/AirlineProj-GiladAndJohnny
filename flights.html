@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>I like Coding</title>
+    <link rel="stylesheet" href="lib/animate.css">
+    <link rel="stylesheet" href="stylesheets/main.css" />
+
+</head>
+
+<body>
+    <nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="index.html">Puki Airlines</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+            <li><a href="passengers.html">Passengers</a></li>
+            <li><a href="planes.html">Planes</a></li>
+            <li><a href="#">Flights</a></li>
+        </ul>
+
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+    </nav>
+    <header class="box">
+        <!--<img src="img/layout/ca-white.png" class="img-responsive"  />-->
+        <img src="img/layout/logo.png" class="img-responsive animated tada" />
+        <h1>Puki Airlines <span class="glyphicon glyphicon-plane"></span> </h1>
+    </header>
+
+    <main class="planePage">
+        <div class="container">
+            <!-- Button trigger modal -->
+            <button onclick="Plane.editPlane()" class="btn btn-primary btn-lg">
+                <span class="glyphicon glyphicon-plus"></span>
+                Add Plane
+            </button>
+        </div>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Model</th>
+                    <th>Seat Count</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody class="tblPlanes">
+
+            </tbody>
+        </table>
+
+        <section class="details">
+            <h2>Plane <span class="pDetailsModel"></span> Details</h2>
+
+        </section>
+
+
+
+    </main>
+
+
+
+
+    <div class="modal fade" id="modalPlane" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Add Plane</h4>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <input type="hidden" id="pId" name="pId" >
+                        <div class="form-group">
+                            <label for="pModel">Model</label>
+                            <input type="text" class="form-control" id="pModel" name="pModel"  placeholder="Model">
+                        </div>
+                        <div class="form-group">
+                            <label for="pSeatCount">Seat Count</label>
+                            <input type="text" class="form-control" id="pSeatCount" name="pSeatCount" placeholder="Seat Count">
+                        </div>
+                        
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" onclick="Plane.savePlane()">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        cofferights &copy; 2016
+    </footer>
+
+    <script src="lib/jquery/jquery.js"></script>
+    <script src="lib/jquery.serializejson.min.js"></script>
+    <script src="lib/bootstrap/javascripts/bootstrap.min.js"></script>
+    <script src="lib/moment.min.js"></script>
+    <script src="js/general.js"></script>
+    <script src="js/oop.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/Plane.class.js"></script>
+
+</body>
+
+</html>
