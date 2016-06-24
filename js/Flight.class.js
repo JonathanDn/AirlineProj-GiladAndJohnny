@@ -1,12 +1,13 @@
 'use strict';
 
-const KEY_PLANES = 'planes';
+const KEY_FLIGHTS = 'flights';
 
 // This is a constructor function
-function Plane(model, seatCount, id) {
-    this.model = model;
-    this.seatCount = seatCount;
-    this.id = (id) ? id : Plane.nextId();
+function Flight(id, src, dest, date) {
+    this.id = (id) ? id : Flight.nextId();
+    this.src = src;
+    this.dest = dest;
+    this.date = new Date(date);
 }
 
 // static methods:   
