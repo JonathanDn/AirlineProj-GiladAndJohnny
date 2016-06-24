@@ -40,7 +40,7 @@ Flight.query = function () {
     let jsonFlights = Flight.loadJSONFromStorage();
 
     Flight.flights = jsonFlights.map(jsonFlight => {
-        return new Flight(jsonFlight.id, jsonFlight.src, jsonFlight.seatCount);
+        return new Flight(jsonFlight.id, jsonFlight.src, jsonFlight.dest);
     })
 
     return Flight.flights;
@@ -133,6 +133,6 @@ Flight.editFlight = function (fId, event) {
         $('#fDest').val('');
         $('#fDate').val('');
     }
-
+    
     $('#modalFlight').modal('show');
 }
