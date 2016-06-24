@@ -40,7 +40,7 @@ Flight.query = function () {
     let jsonFlights = Flight.loadJSONFromStorage();
 
     Flight.flights = jsonFlights.map(jsonFlight => {
-        return new Flight(jsonFlight.model, jsonFlight.seatCount, jsonFlight.id);
+        return new Flight(jsonFlight.id, jsonFlight.src, jsonFlight.seatCount);
     })
 
     return Flight.flights;
@@ -51,12 +51,13 @@ Flight.save = function (formObj) {
     let flight;
     if (formObj.fId) {
         flight = Flight.findById(+formObj.fId);
-        flight.model = formObj.fModel;
-        flight.seatCount = formObj.fSeatCount;
+        flight.src = formObj.fSrc;
+        flight.dest = formObj.fDest;
+        flight.date = formObj.fDate;
         // not sure what this functionality looks like
-        console.log('formObj.fSeatCount', formObj.fSeatCount);
+        console.log('formObj.fDate', formObj.fDate);
     } else {
-        flight = new Flight(formObj.fModel, formObj.fSeatCount);
+        flight = new Flight(formObj.fSrc, formObj.fDest, formObj.fDate);
         flights.push(flight);
     }
     Flight.flights = flights;
@@ -80,9 +81,11 @@ Flight.render = function () {
     var strHtml = flights.map(f => {
         return `<tr onclick="Flight.select(${f.id}, this)">
             <td>${f.id}</td>
-            <td>${f.model}</td>
+            <td>${f.src}</td>
+            <td>${f.dest}</td>
+            <td>${f.date}</td>
             <td>
-                ${f.seatCount}
+                ${f.plane}
             </td>
             <td>
                 <button class="btn btn-danger" onclick="Flight.remove(${f.id}, event)">
@@ -121,12 +124,14 @@ Flight.editFlight = function (fId, event) {
     if (fId) {
         let flight = Flight.findById(fId);
         $('#fId').val(flight.id);
-        $('#fModel').val(flight.model);
-        $('#fSeatCount').val(flight.seatCount);
+        $('#fSrc').val(flight.src);
+        $('#fDest').val(flight.dest);
+        $('#fDate').val(flight.date);
     } else {
         $('#fId').val('');
-        $('#fModel').val('');
-        $('#fSeatCount').val('');
+        $('#fSrc').val('');
+        $('#fDest').val('');
+        $('#fDate').val('');
     }
 
     $('#modalFlight').modal('show');
