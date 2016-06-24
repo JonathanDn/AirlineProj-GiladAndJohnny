@@ -53,7 +53,7 @@ Flight.save = function (formObj) {
         flight = Flight.findById(+formObj.fId);
         flight.src = formObj.fSrc;
         flight.dest = formObj.fDest;
-        flight.date = formObj.fDate;
+        flight.date = new Date(formObj.fDate);
         // not sure what this functionality looks like
         console.log('formObj.fDate', formObj.fDate);
     } else {
@@ -83,7 +83,7 @@ Flight.render = function () {
             <td>${f.id}</td>
             <td>${f.src}</td>
             <td>${f.dest}</td>
-            <td>${f.date}</td>
+            <td>${moment(f.date).format('DD-MM-YYYY')}</td>
             <td>
                 ${f.plane}
             </td>
@@ -126,7 +126,7 @@ Flight.editFlight = function (fId, event) {
         $('#fId').val(flight.id);
         $('#fSrc').val(flight.src);
         $('#fDest').val(flight.dest);
-        $('#fDate').val(flight.date);
+        $('#fDate').val(moment(flight.date).format('YYYY-MM-DD'));
     } else {
         $('#fId').val('');
         $('#fSrc').val('');
