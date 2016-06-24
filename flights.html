@@ -41,30 +41,32 @@
         <h1>Puki Airlines <span class="glyphicon glyphicon-plane"></span> </h1>
     </header>
 
-    <main class="planePage">
+    <main class="flightPage">
         <div class="container">
             <!-- Button trigger modal -->
-            <button onclick="Plane.editPlane()" class="btn btn-primary btn-lg">
+            <button onclick="Flight.editFlight()" class="btn btn-primary btn-lg">
                 <span class="glyphicon glyphicon-plus"></span>
-                Add Plane
+                Add Flight
             </button>
         </div>
         <table class="table table-hover">
             <thead>
                 <tr>
                     <th>Id</th>
-                    <th>Model</th>
-                    <th>Seat Count</th>
+                    <th>src</th>
+                    <th>dest</th>
+                    <th>date</th>
+                    <th>plane</th>
                     <th>Actions</th>
                 </tr>
             </thead>
-            <tbody class="tblPlanes">
+            <tbody class="tblFlights">
 
             </tbody>
         </table>
 
         <section class="details">
-            <h2>Plane <span class="pDetailsModel"></span> Details</h2>
+            <h2>Flight <span class="fDetailsModel"></span> Details</h2>
 
         </section>
 
@@ -75,30 +77,34 @@
 
 
 
-    <div class="modal fade" id="modalPlane" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal fade" id="modalFlight" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">Add Plane</h4>
+                    <h4 class="modal-title" id="myModalLabel">Add Flight</h4>
                 </div>
                 <div class="modal-body">
                     <form>
                         <input type="hidden" id="pId" name="pId" >
                         <div class="form-group">
-                            <label for="pModel">Model</label>
-                            <input type="text" class="form-control" id="pModel" name="pModel"  placeholder="Model">
+                            <label for="fSrc">Src</label>
+                            <input type="text" class="form-control" id="fSrc" name="fSrc"  placeholder="Source of flight">
                         </div>
                         <div class="form-group">
-                            <label for="pSeatCount">Seat Count</label>
-                            <input type="text" class="form-control" id="pSeatCount" name="pSeatCount" placeholder="Seat Count">
+                            <label for="fDest">Dest</label>
+                            <input type="text" class="form-control" id="fDest" name="fDest" placeholder="Destination of flight">
+                        </div>
+                        <div class="form-group">
+                            <label for="fDate">Date</label>
+                            <input type="text" class="form-control" id="fDate" name="fDate" placeholder="Date of flight">
                         </div>
                         
                     </form>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" onclick="Plane.savePlane()">Save</button>
+                    <button type="button" class="btn btn-primary" onclick="Flight.savePlane()">Save</button>
                 </div>
             </div>
         </div>
