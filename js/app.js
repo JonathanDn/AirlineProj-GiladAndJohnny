@@ -24,6 +24,6 @@
 
 $(document).ready(()=>{
 
-    Plane.render();
+    Flight.render();
 
 });
