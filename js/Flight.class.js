@@ -1,132 +1,133 @@
 'use strict';
 
-const KEY_PLANES = 'planes';
+const KEY_FLIGHTS = 'flights';
 
 // This is a constructor function
-function Plane(model, seatCount, id) {
-    this.model = model;
-    this.seatCount = seatCount;
-    this.id = (id) ? id : Plane.nextId();
-}
+function Flight(id, src, dest, date) {
+    this.id = (id) ? id : Flight.nextId();
+    this.src = src;
+    this.dest = dest;
+    this.date = new Date(date);
+} 
 
 // static methods:   
 
-Plane.nextId = function () {
+Flight.nextId = function () {
     let result = 1;
-    let jsonPlanes = Plane.loadJSONFromStorage();
-    if (jsonPlanes.length) result = jsonPlanes[jsonPlanes.length - 1].id + 1;
+    let jsonFlights = Flight.loadJSONFromStorage();
+    if (jsonFlights.length) result = jsonFlights[jsonFlights.length - 1].id + 1;
     return result;
 }
 
-Plane.findById = function (pId) {
+Flight.findById = function (fId) {
     let result = null;
-    let planes = Plane.query()
-        .filter(p => p.id === pId);
-    if (planes.length) result = planes[0];
+    let flights = Flight.query()
+        .filter(f => f.id === fId);
+    if (flights.length) result = flights[0];
     return result;
 }
 
-Plane.loadJSONFromStorage = function () {
-    let planes = getFromStorage(KEY_PLANES);
-    if (!planes) planes = [];
-    return planes;
+Flight.loadJSONFromStorage = function () {
+    let flights = getFromStorage(KEY_FLIGHTS);
+    if (!flights) flights = [];
+    return flights;
 }
 
 
-Plane.query = function () {
+Flight.query = function () {
 
-    if (Plane.planes) return Plane.planes;
-    let jsonPlanes = Plane.loadJSONFromStorage();
+    if (Flight.flights) return Flight.flights;
+    let jsonFlights = Flight.loadJSONFromStorage();
 
-    Plane.planes = jsonPlanes.map(jsonPlane => {
-        return new Plane(jsonPlane.model, jsonPlane.seatCount, jsonPlane.id);
+    Flight.flights = jsonFlights.map(jsonFlight => {
+        return new Flight(jsonFlight.model, jsonFlight.seatCount, jsonFlight.id);
     })
 
-    return Plane.planes;
+    return Flight.flights;
 }
 
-Plane.save = function (formObj) {
-    let planes = Plane.query();
-    let plane;
-    if (formObj.pId) {
-        plane = Plane.findById(+formObj.pId);
-        plane.model = formObj.pModel;
-        plane.seatCount = formObj.pSeatCount;
+Flight.save = function (formObj) {
+    let flights = Flight.query();
+    let flight;
+    if (formObj.fId) {
+        flight = Flight.findById(+formObj.fId);
+        flight.model = formObj.fModel;
+        flight.seatCount = formObj.fSeatCount;
         // not sure what this functionality looks like
-        console.log('formObj.pSeatCount', formObj.pSeatCount);
+        console.log('formObj.fSeatCount', formObj.fSeatCount);
     } else {
-        plane = new Plane(formObj.pModel, formObj.pSeatCount);
-        planes.push(plane);
+        flight = new Flight(formObj.fModel, formObj.fSeatCount);
+        flights.push(flight);
     }
-    Plane.planes = planes;
-    saveToStorage(KEY_PLANES, planes);
+    Flight.flights = flights;
+    saveToStorage(KEY_FLIGHTS, flights);
 }
 
 
-Plane.remove = function (pId, event) {
+Flight.remove = function (fId, event) {
     event.stopPropagation();
-    let planes = Plane.query();
-    planes = planes.filter(p => p.id !== pId)
-    saveToStorage(KEY_PLANES, planes);
-    Plane.planes = planes;
-    Plane.render();
+    let flights = Flight.query();
+    flights = flights.filter(f => f.id !== fId)
+    saveToStorage(KEY_FLIGHTS, flights);
+    Flight.flights = flights;
+    Flight.render();
 }
 
 
-Plane.render = function () {
+Flight.render = function () {
 
-    let planes = Plane.query();
-    var strHtml = planes.map(p => {
-        return `<tr onclick="Plane.select(${p.id}, this)">
-            <td>${p.id}</td>
-            <td>${p.model}</td>
+    let flights = Flight.query();
+    var strHtml = flights.map(f => {
+        return `<tr onclick="Flight.select(${f.id}, this)">
+            <td>${f.id}</td>
+            <td>${f.model}</td>
             <td>
-                ${p.seatCount}
+                ${f.seatCount}
             </td>
             <td>
-                <button class="btn btn-danger" onclick="Plane.remove(${p.id}, event)">
+                <button class="btn btn-danger" onclick="Flight.remove(${f.id}, event)">
                     <i class="glyphicon glyphicon-trash"></i>
                 </button>
-                 <button class="btn btn-info" onclick="Plane.editPlane(${p.id}, event)">
+                 <button class="btn btn-info" onclick="Flight.editFlight(${f.id}, event)">
                     <i class="glyphicon glyphicon-edit"></i>
                 </button>
             </td>
         </tr>`
 
     }).join(' ');
-    $('.tblPlanes').html(strHtml);
+    $('.tblFlights').html(strHtml);
 }
 
-Plane.select = function (pId, elRow) {
+Flight.select = function (fId, elRow) {
     $('.active').removeClass('active success');
     $(elRow).addClass('active success');
     $('.details').show();
-    let p = Plane.findById(pId);
-    $('.pDetailsModel').html(p.model);
+    let f = Flight.findById(fId);
+    $('.fDetailsModel').html(f.model);
 }
 
-Plane.savePlane = function () {
+Flight.saveFlight = function () {
     var formObj = $('form').serializeJSON();
     console.log('formObj', formObj);
 
-    Plane.save(formObj);
-    Plane.render();
-    $('#modalPlane').modal('hide');
+    Flight.save(formObj);
+    Flight.render();
+    $('#modalFlight').modal('hide');
 }
 
 
-Plane.editPlane = function (pId, event) {
+Flight.editFlight = function (fId, event) {
     if (event) event.stopPropagation();
-    if (pId) {
-        let plane = Plane.findById(pId);
-        $('#pId').val(plane.id);
-        $('#pModel').val(plane.model);
-        $('#pSeatCount').val(plane.seatCount);
+    if (fId) {
+        let flight = Flight.findById(fId);
+        $('#fId').val(flight.id);
+        $('#fModel').val(flight.model);
+        $('#fSeatCount').val(flight.seatCount);
     } else {
-        $('#pId').val('');
-        $('#pModel').val('');
-        $('#pSeatCount').val('');
+        $('#fId').val('');
+        $('#fModel').val('');
+        $('#fSeatCount').val('');
     }
 
-    $('#modalPlane').modal('show');
+    $('#modalFlight').modal('show');
 }
