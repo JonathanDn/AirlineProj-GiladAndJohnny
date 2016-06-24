@@ -40,7 +40,7 @@ Flight.query = function () {
     let jsonFlights = Flight.loadJSONFromStorage();
 
     Flight.flights = jsonFlights.map(jsonFlight => {
-        return new Flight(jsonFlight.src, jsonFlight.dest, jsonFight.date, jsonFlight.id);
+        return new Flight(jsonFlight.src, jsonFlight.dest, jsonFlight.date, jsonFlight.id);
     })
 
     return Flight.flights;
