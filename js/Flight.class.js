@@ -3,11 +3,11 @@
 const KEY_FLIGHTS = 'flights';
 
 // This is a constructor function
-function Flight(id, src, dest, date) {
-    this.id = (id) ? id : Flight.nextId();
+function Flight(src, dest, date, id) {
     this.src = src;
     this.dest = dest;
     this.date = new Date(date);
+    this.id = (id) ? id : Flight.nextId();
 } 
 
 // static methods:   
@@ -40,7 +40,7 @@ Flight.query = function () {
     let jsonFlights = Flight.loadJSONFromStorage();
 
     Flight.flights = jsonFlights.map(jsonFlight => {
-        return new Flight(jsonFlight.id, jsonFlight.src, jsonFlight.dest);
+        return new Flight(jsonFlight.src, jsonFlight.dest, jsonFight.date, jsonFlight.id);
     })
 
     return Flight.flights;
