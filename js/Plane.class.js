@@ -19,10 +19,13 @@ Plane.nextId = function () {
 }
 
 Plane.findById = function (pId) {
+    // console.log('pId: ', pId)
     let result = null;
+    // console.log('Plane.query(): ', Plane.query());    
     let planes = Plane.query()
         .filter(p => p.id === pId);
     if (planes.length) result = planes[0];
+    console.log('result: ', result);
     return result;
 }
 
@@ -140,3 +143,7 @@ Plane.editPlane = function (pId, event) {
 
     $('#modalPlane').modal('show');
 }
+
+// test2
+// var test2 = Plane.findById(2);
+// console.log('test2: ', test2);

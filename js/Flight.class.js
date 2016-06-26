@@ -3,12 +3,12 @@
 const KEY_FLIGHTS = 'flights';
 
 // This is a constructor function
-function Flight(src, dest, date, id, planeId) {
+function Flight(src, dest, date, planeId, id) {
     this.src = src;
     this.dest = dest;
     this.date = new Date(date);
-    this.id = (id) ? id : Flight.nextId();
     this.planeId = planeId;
+    this.id = (id) ? id : Flight.nextId();
 } 
 
 // static methods:   
@@ -36,10 +36,12 @@ Flight.loadJSONFromStorage = function () {
 
 
 Flight.query = function () {
-
+    console.log('QUERY: Flight.flights: ', Flight.flights);
+    
     if (Flight.flights) return Flight.flights;
     let jsonFlights = Flight.loadJSONFromStorage();
-
+    console.log('QUERY: jsonFlights: ', jsonFlights);
+    
     Flight.flights = jsonFlights.map(jsonFlight => {
         return new Flight(jsonFlight.src, jsonFlight.dest, jsonFlight.date, jsonFlight.id, jsonFlight.planeId);
     })
@@ -50,17 +52,22 @@ Flight.query = function () {
 // saves the flight object to localStorage.
 Flight.save = function (formObj) {
     let flights = Flight.query();
+    console.log('flights: ', flights)
     let flight;
+    // console.log('formObj.fId: ', formObj.fId)
+    // console.log('formObj.fPlaneCode: ', formObj.fPlaneCode);
     if (formObj.fId) {
-        flight = Flight.findById(+formObj.fId);
+        flight = Flight.findById(formObj.fId);
         flight.src = formObj.fSrc;
         flight.dest = formObj.fDest;
         flight.date = new Date(formObj.fDate);
-        flight.planeId = formObj.fPlaneId;
+        flight.planeId = formObj.fPlaneCode;
         // not sure what this functionality looks like
         console.log('formObj.fDate', formObj.fDate);
     } else {
-        flight = new Flight(formObj.fSrc, formObj.fDest, formObj.fDate);
+        // console.log('IN ELSE');
+        
+        flight = new Flight(formObj.fSrc, formObj.fDest, formObj.fDate, formObj.fPlaneCode);
         flights.push(flight);
     }
     Flight.flights = flights;
@@ -79,16 +86,27 @@ Flight.remove = function (fId, event) {
 
 
 Flight.render = function () {
-
     let flights = Flight.query();
+    
     var strHtml = flights.map(f => {
+        console.log('f.planeId: ', f.planeId);
+        console.log('f: ', f);
+        
+        let plane = Plane.findById(f.planeId);
+        
+        console.log('plane: ', plane);
+        // console.log('plane.model: ', plane.model);
+        
+        // console.log('f.planeId: ', f.planeId)
+
+        // ADD TO planeid ${plane.model}-${plane.seatCount}
         return `<tr onclick="Flight.select(${f.id}, this)">
             <td>${f.id}</td>
             <td>${f.src}</td>
             <td>${f.dest}</td>
             <td>${moment(f.date).format('DD-MM-YYYY')}</td>
             <td>
-                ${f.planeId}
+                PA-${f.planeId}-${plane.model}-${plane.seatCount}
             </td>
             <td>
                 <button class="btn btn-danger" onclick="Flight.remove(${f.id}, event)">
@@ -158,3 +176,7 @@ Flight.editFlight = function (fId, event) {
     $('#modalFlight').modal('show');
 }
 
+
+// test
+// var test = Plane.findById(2);
+// console.log('test: ', test);
