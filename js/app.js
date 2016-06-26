@@ -25,5 +25,7 @@
 $(document).ready(()=>{
 
     Flight.render();
+    Passenger.render();
+    Plane.render();
 
 });
