@@ -55,14 +55,23 @@ function renderDropDown(planes) {
   }).join(' ');
 }
 
-
-function renderDropDown() {
+// srcs
+function renderLocations() {
     let srcs = getSrcs();
-  console.log('dropdown srcs',srcs)
+    let dests = getDests();
+//   console.log('dropdown srcs',srcs)
 
-  return srcs.map((src) => {
+   let srcHtml = srcs.map((src) => {
              return `<option value="${src}">${src}</option>`
   }).join(' ');
+
+  let destHtml = dests.map((dest) => {
+             return `<option value="${dest}">${dest}</option>`
+  }).join(' ');
+
+  // get elements to show the dropdowns --> show them.
+  $('.selectSrc').html(srcHtml);
+  $('.selectDest').html(destHtml);
 }
 
 
@@ -100,3 +109,4 @@ function getDests() {
 // tests:
 getSrcs();
 getDests();
+renderLocations();
