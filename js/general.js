@@ -69,7 +69,7 @@ function inherit(derived, base) {
 function renderDropDown(planes) {
   console.log('dropdown planes',planes)
   return planes.map((plane) => {
-             return `<li value="${plane.id}">PA-${plane.id}-${plane.model}-${plane.seatCount}</li>`
+             return `<option value="${plane.id}">PA-${plane.id}-${plane.model}-${plane.seatCount}</option>`
   }).join(' ');
 }
 
