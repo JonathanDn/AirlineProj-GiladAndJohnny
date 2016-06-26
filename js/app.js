@@ -25,8 +25,6 @@
 $(document).ready(()=>{
 
     renderByPath(location.pathname);
-    
-    getFlightsFromLocalStorage()
 
 });
 
@@ -49,8 +47,56 @@ function renderByPath(path) {
     
 }
 
-function getFlightsFromLocalStorage() {
-    var flights = Flight.loadJSONFromStorage;
-    console.log('flights: ', flights);
-    
+// render the planes available in dropdown.
+function renderDropDown(planes) {
+  console.log('dropdown planes',planes)
+  return planes.map((plane) => {
+             return `<option value="${plane.id}">PA-${plane.id}-${plane.model}-${plane.seatCount}</option>`
+  }).join(' ');
 }
+
+
+function renderDropDown() {
+    let srcs = getSrcs();
+  console.log('dropdown srcs',srcs)
+
+  return srcs.map((src) => {
+             return `<option value="${src}">${src}</option>`
+  }).join(' ');
+}
+
+
+function getFlightsFromLocalStorage() {
+    let flights = Flight.loadJSONFromStorage();
+    console.log('flights: ', flights);
+    return flights;
+}
+
+function getSrcs() {
+    let flights = getFlightsFromLocalStorage();
+    // console.log('flights[0].src: ', flights[0].src);
+    let srcs = [];
+    for (var i = 0; i < flights.length; i++) {
+        let currSrc = flights[i].src;
+        srcs.push(currSrc);
+    }
+    console.log('srcs: ', srcs);
+    return srcs;
+}
+
+function getDests() {
+    let flights = getFlightsFromLocalStorage();
+    let dests = [];
+    for (var i = 0; i < flights.length; i++) {
+        let currDest = flights[i].dest;
+        dests.push(currDest);
+    }
+    console.log('dests: ', dests);
+    
+    return dests;
+}
+
+
+// tests:
+getSrcs();
+getDests();
