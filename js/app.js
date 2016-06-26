@@ -26,7 +26,7 @@ $(document).ready(()=>{
 
     renderByPath(location.pathname);
     
-     
+    getFlightsFromLocalStorage()
 
 });
 
@@ -46,5 +46,11 @@ function renderByPath(path) {
         default:
             break ;
     }
+    
+}
+
+function getFlightsFromLocalStorage() {
+    var flights = Flight.loadJSONFromStorage;
+    console.log('flights: ', flights);
     
 }
