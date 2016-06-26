@@ -24,8 +24,8 @@
 
 $(document).ready(()=>{
 
-    Flight.render();
     Passenger.render();
+    Flight.render();
     Plane.render();
 
 });

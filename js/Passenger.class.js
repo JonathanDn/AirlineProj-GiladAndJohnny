@@ -2,15 +2,20 @@
 
 const KEY_PASSENGERS = 'passengers';
 
+const USER_PHOTOS = ['l', 's', 'j', 'k', 'g'];
+
 // This is a constructor function
-function Passenger(name, birthdate, id) {
+function Passenger(name, birthdate, phone, imgSrc, id) {
     this.name = name;
     this.birthdate = new Date(birthdate);
+    this.phone = phone ;
+    this.imgSrc = getRandImgSrc(USER_PHOTOS);
     this.pin = randomPin();
     this.id = (id) ? id : Passenger.nextId();
 }
 
 // static methods:
+
 
 Passenger.nextId = function () {
     let result = 1;
@@ -41,7 +46,7 @@ Passenger.query = function () {
     let jsonPassengers = Passenger.loadJSONFromStorage();
 
     Passenger.passengers = jsonPassengers.map(jsonPassenger => {
-        return new Passenger(jsonPassenger.name, jsonPassenger.birthdate, jsonPassenger.id);
+        return new Passenger(jsonPassenger.name, jsonPassenger.birthdate, jsonPassenger.phone, jsonPassenger.imgSrc, jsonPassenger.id);
     })
 
     return Passenger.passengers;
@@ -54,8 +59,9 @@ Passenger.save = function (formObj) {
         passenger = Passenger.findById(+formObj.pid);
         passenger.name = formObj.pname;
         passenger.birthdate = new Date(formObj.pdate);
+        passenger.phone = formObj.pphone;
     } else {
-        passenger = new Passenger(formObj.pname, formObj.pdate);
+        passenger = new Passenger(formObj.pname, formObj.pdate, formObj.pphone);
         passengers.push(passenger);
     }
     Passenger.passengers = passengers;
@@ -102,6 +108,7 @@ Passenger.select = function (pId, elRow) {
     $('.details').show();
     let p = Passenger.findById(pId);
     $('.pDetailsName').html(p.name);
+    Passenger.showProfile(pId);
 }
 
 
@@ -122,15 +129,26 @@ Passenger.editPassenger = function (pId, event) {
         $('#pid').val(passenger.id);
         $('#pname').val(passenger.name);
         $('#pdate').val(moment(passenger.birthdate).format('YYYY-MM-DD'));
+        $('#pphone').val(passenger.phone);
     } else {
         $('#pid').val('');
         $('#pname').val('');
         $('#pdate').val('');
+        $('#pphone').val('');
     }
 
 
     $('#modalPassenger').modal('show');
+}
 
+Passenger.showProfile = function (pId) {
+    let p = Passenger.findById(pId);
+    let htmlStr = `<div class="phoneNum">Phone: ${p.phone}</div> 
+                   <div class="imgCont"><img src="${p.imgSrc}"/></div> `;
+    $('.profileCont').html(htmlStr);
+    console.log(p.phone);
+    
+    
 }
 
 // instance methods:

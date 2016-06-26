@@ -57,6 +57,13 @@ function randomPin() {
 }
 
 
+function getRandImgSrc(imgArr) {
+    let randImgIndex = parseInt( Math.random() * imgArr.length );
+    console.log(randImgIndex);
+    return `img/profiles/${ imgArr[randImgIndex] }.jpg` ; 
+}
+
+
 // This function is used to achieve class inheritance
 function inherit(derived, base) {
      function Dummy() { }
