@@ -66,9 +66,9 @@ function inherit(derived, base) {
 }
 
 // render the planes available in dropdown.
-function renderDropDown(ojects) {
-  return objects.map((object) => {
-    `<li>${object}</li>`;
+function renderDropDown(objects) {
+  return objects.map( (object) => {
+             return `<li>${object}</li>`
   }).join(' ');
 }
 

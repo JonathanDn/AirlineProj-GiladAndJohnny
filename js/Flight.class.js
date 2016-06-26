@@ -126,7 +126,10 @@ Flight.saveFlight = function () {
 Flight.editFlight = function (fId, event) {
     if (event) event.stopPropagation();
     // print planes array to modal dropdown.
-        $('.dropdown-menu').html(renderDropDown(['a', 'b', 'c']));
+    let temparr = ['a', 'b', 'c'];
+    let arr = renderDropDown(temparr);
+        console.log(arr);
+        $('.dropdown-menu').html(arr);
     if (fId) {
         let flight = Flight.findById(fId);
         $('#fId').val(flight.id);
