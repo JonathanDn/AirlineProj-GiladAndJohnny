@@ -3,11 +3,12 @@
 const KEY_FLIGHTS = 'flights';
 
 // This is a constructor function
-function Flight(src, dest, date, id) {
+function Flight(src, dest, date, id, planeId) {
     this.src = src;
     this.dest = dest;
     this.date = new Date(date);
     this.id = (id) ? id : Flight.nextId();
+    this.planeId = planeId;
 } 
 
 // static methods:   
@@ -40,12 +41,13 @@ Flight.query = function () {
     let jsonFlights = Flight.loadJSONFromStorage();
 
     Flight.flights = jsonFlights.map(jsonFlight => {
-        return new Flight(jsonFlight.src, jsonFlight.dest, jsonFlight.date, jsonFlight.id);
+        return new Flight(jsonFlight.src, jsonFlight.dest, jsonFlight.date, jsonFlight.id, jsonFlight.planeId);
     })
 
     return Flight.flights;
 }
 
+// saves the flight object to localStorage.
 Flight.save = function (formObj) {
     let flights = Flight.query();
     let flight;
@@ -54,6 +56,7 @@ Flight.save = function (formObj) {
         flight.src = formObj.fSrc;
         flight.dest = formObj.fDest;
         flight.date = new Date(formObj.fDate);
+        flight.planeId = formObj.fPlaneId;
         // not sure what this functionality looks like
         console.log('formObj.fDate', formObj.fDate);
     } else {
@@ -85,7 +88,7 @@ Flight.render = function () {
             <td>${f.dest}</td>
             <td>${moment(f.date).format('DD-MM-YYYY')}</td>
             <td>
-                ${f.plane}
+                ${f.planeId}
             </td>
             <td>
                 <button class="btn btn-danger" onclick="Flight.remove(${f.id}, event)">
@@ -109,6 +112,7 @@ Flight.select = function (fId, elRow) {
     $('.fDetailsModel').html(f.model);
 }
 
+// collects all the flight data from modal and turns to an obj
 Flight.saveFlight = function () {
     var formObj = $('form').serializeJSON();
     console.log('formObj', formObj);
@@ -121,17 +125,21 @@ Flight.saveFlight = function () {
 
 Flight.editFlight = function (fId, event) {
     if (event) event.stopPropagation();
+    // print planes array to modal dropdown.
+        $('.dropdown-menu').html(renderDropDown(['a', 'b', 'c']));
     if (fId) {
         let flight = Flight.findById(fId);
         $('#fId').val(flight.id);
         $('#fSrc').val(flight.src);
         $('#fDest').val(flight.dest);
         $('#fDate').val(moment(flight.date).format('YYYY-MM-DD'));
+        $('#fPlaneId').val(flight.plane);
     } else {
         $('#fId').val('');
         $('#fSrc').val('');
         $('#fDest').val('');
         $('#fDate').val('');
+        $('#fPlaneId').val('');
     }
     
     $('#modalFlight').modal('show');

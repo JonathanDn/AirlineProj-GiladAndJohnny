@@ -65,4 +65,10 @@ function inherit(derived, base) {
      derived.prototype = new Dummy();
 }
 
+// render the planes available in dropdown.
+function renderDropDown(ojects) {
+  return objects.map((object) => {
+    `<li>${object}</li>`;
+  }).join(' ');
+}
 
