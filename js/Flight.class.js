@@ -31,12 +31,16 @@ Flight.findById = function (fId) {
 Flight.loadJSONFromStorage = function () {
     let flights = getFromStorage(KEY_FLIGHTS);
     if (!flights) flights = [];
+    console.log('SHOULD BE Flight.flights: ', flights);
+    
+    
     return flights;
 }
 
 
 Flight.query = function () {
     console.log('QUERY: Flight.flights: ', Flight.flights);
+    
     
     if (Flight.flights) return Flight.flights;
     let jsonFlights = Flight.loadJSONFromStorage();
@@ -54,16 +58,17 @@ Flight.save = function (formObj) {
     let flights = Flight.query();
     console.log('flights: ', flights)
     let flight;
-    // console.log('formObj.fId: ', formObj.fId)
     // console.log('formObj.fPlaneCode: ', formObj.fPlaneCode);
     if (formObj.fId) {
-        flight = Flight.findById(formObj.fId);
+        flight = Flight.findById(+formObj.fId);
+        // console.log('formObj.fId: ', formObj.fId)
+
         flight.src = formObj.fSrc;
         flight.dest = formObj.fDest;
         flight.date = new Date(formObj.fDate);
         flight.planeId = formObj.fPlaneCode;
         // not sure what this functionality looks like
-        console.log('formObj.fDate', formObj.fDate);
+        // console.log('formObj.fDate', formObj.fDate);
     } else {
         // console.log('IN ELSE');
         
@@ -87,10 +92,17 @@ Flight.remove = function (fId, event) {
 
 Flight.render = function () {
     let flights = Flight.query();
+    console.log('flights: ', flights);
     
     var strHtml = flights.map(f => {
-        console.log('f.planeId: ', f.planeId);
-        console.log('f: ', f);
+        
+        // console.log('f.planeId: ', f.planeId);
+        // console.log('f: ', f);
+        
+        // this is the fix
+        f.planeId = +f.planeId;
+        f.id = +f.id
+        // console.log('fixed f: ', f);
         
         let plane = Plane.findById(f.planeId);
         
@@ -133,7 +145,12 @@ Flight.select = function (fId, elRow) {
 // collects all the flight data from modal and turns to an obj
 Flight.saveFlight = function () {
     var formObj = $('form').serializeJSON();
-    console.log('formObj', formObj);
+    // formObj[0]
+    // formObj.fPlaneCode = +formObj.fPlaneCode;
+    // console.log('formObj from MODAL: ', formObj.form);
+    // console.log('formObj.fPlaneCode: ', formObj.fPlaneCode);
+    // formObj.serializeJSON();
+    // console.log('formObj', formObj);
 
     Flight.save(formObj);
     Flight.render();

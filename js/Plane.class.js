@@ -25,13 +25,18 @@ Plane.findById = function (pId) {
     let planes = Plane.query()
         .filter(p => p.id === pId);
     if (planes.length) result = planes[0];
-    console.log('result: ', result);
+    // console.log('result: ', result);
     return result;
 }
 
 Plane.loadJSONFromStorage = function () {
     let planes = getFromStorage(KEY_PLANES);
     if (!planes) planes = [];
+    // this is the fix in plane
+    for (var i = 0; i < planes.length; i++) {
+        planes[i].seatCount = +planes[i].seatCount;
+        planes[i].id = +planes[i].id
+    }
     return planes;
 }
 
@@ -66,7 +71,7 @@ Plane.save = function (formObj) {
         plane.model = formObj.pModel;
         plane.seatCount = formObj.pSeatCount;
         // not sure what this functionality looks like
-        console.log('formObj.pSeatCount', formObj.pSeatCount);
+        // console.log('formObj.pSeatCount', formObj.pSeatCount);
     } else {
         plane = new Plane(formObj.pModel, formObj.pSeatCount);
         planes.push(plane);

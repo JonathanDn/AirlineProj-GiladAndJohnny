@@ -9,9 +9,9 @@ const yaronGreet        = greet.bind(null, 'Yaron');
 const yaronToYuvalGreet = greet.bind(null, 'Yaron', 'Yuval');
 
 
-greet('Yaron', 'Daniel', 'Halha!');
-yaronGreet('Tsafrir', 'Huhu!');
-yaronToYuvalGreet('Boker Tov!');
+// greet('Yaron', 'Daniel', 'Halha!');
+// yaronGreet('Tsafrir', 'Huhu!');
+// yaronToYuvalGreet('Boker Tov!');
 
 let person = {
     name: 'Shaul',
@@ -20,14 +20,14 @@ let person = {
         
         if (!!this.car) {
             this.speak('Car', 'Lets Go');
-            console.log('Driving my car!', this.car);
+            // console.log('Driving my car!', this.car);
         } else {
-            console.log('Just walking here...');
+            // console.log('Just walking here...');
             
         }
     },
     speak: function(to, greeting="JUST HELLO"){
-        console.log('from: ', this.name, 'to:', to, 'greeting:', greeting);
+        // console.log('from: ', this.name, 'to:', to, 'greeting:', greeting);
     }
     
 };
@@ -48,8 +48,8 @@ person2.name = 'Arik';
 person2.car.model = 'Subaru';
 person2.drive();
 
-console.log('person1', person);
-console.log('person2', person2);
+// console.log('person1', person);
+// console.log('person2', person2);
 
 
 // Deep copy

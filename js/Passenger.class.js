@@ -107,7 +107,7 @@ Passenger.select = function (pId, elRow) {
 
 Passenger.savePassenger = function () {
     var formObj = $('form').serializeJSON();
-    console.log('formObj', formObj);
+    // console.log('formObj', formObj);
 
 
     Passenger.save(formObj);
