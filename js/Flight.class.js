@@ -139,7 +139,7 @@ Flight.editFlight = function (fId, event) {
 
     let planeIds = renderDropDown(Plane.loadJSONFromStorage());
     
-        $('.dropdown-menu').html(planeIds);
+        $('.selectPlane').html(planeIds);
     if (fId) {
         let flight = Flight.findById(fId);
         $('#fId').val(flight.id);
