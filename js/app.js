@@ -24,8 +24,26 @@
 
 $(document).ready(()=>{
 
-    Passenger.render();
-    Flight.render();
-    Plane.render();
+    renderByPath(location.pathname);
+    
+     
 
 });
+
+
+function renderByPath(path) {
+    switch (path) {
+        case '/flights.html':
+            Flight.render();
+            break ;
+        case '/passengers.html':
+            Passenger.render();
+            break ;
+        case '/planes.html':
+            Plane.render();
+            break ;
+        default:
+            break ;
+    }
+    
+}
