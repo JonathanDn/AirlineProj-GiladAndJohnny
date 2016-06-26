@@ -41,7 +41,9 @@ function renderByPath(path) {
         case '/planes.html':
             Plane.render();
             break ;
-        default:
+        // index.html is default
+        default :
+            renderLocations();
             break ;
     }
     
@@ -71,6 +73,8 @@ function renderLocations() {
 
   // get elements to show the dropdowns --> show them.
   $('.selectSrc').html(srcHtml);
+
+
   $('.selectDest').html(destHtml);
 }
 
@@ -85,9 +89,16 @@ function getSrcs() {
     let flights = getFlightsFromLocalStorage();
     // console.log('flights[0].src: ', flights[0].src);
     let srcs = [];
+    // check for doubles within this dropdown.
     for (var i = 0; i < flights.length; i++) {
         let currSrc = flights[i].src;
-        srcs.push(currSrc);
+        let isSrcs = false;
+        for (var j = 0; j < srcs.length; j++) {
+            if (srcs[j] === currSrc) isSrcs = true;
+        }
+        if (!isSrcs) {
+            srcs.push(currSrc);
+        }
     }
     console.log('srcs: ', srcs);
     return srcs;
@@ -96,9 +107,17 @@ function getSrcs() {
 function getDests() {
     let flights = getFlightsFromLocalStorage();
     let dests = [];
+    // check for doubles within this dropdown.
     for (var i = 0; i < flights.length; i++) {
         let currDest = flights[i].dest;
-        dests.push(currDest);
+        let isDests = false;
+        for (var j = 0; j < dests.length; j++) {
+            if (dests[j] === currDest) isDests = true;
+        }
+        if (!isDests) {
+            dests.push(currDest);
+        }
+        
     }
     console.log('dests: ', dests);
     
@@ -107,6 +126,6 @@ function getDests() {
 
 
 // tests:
-getSrcs();
-getDests();
-renderLocations();
+// getSrcs();
+// getDests();
+// renderLocations();
