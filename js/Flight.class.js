@@ -125,11 +125,21 @@ Flight.saveFlight = function () {
 
 Flight.editFlight = function (fId, event) {
     if (event) event.stopPropagation();
+    // get planeId array from local storage.
+    // replace it with the tempArr
+
     // print planes array to modal dropdown.
-    let temparr = ['a', 'b', 'c'];
-    let arr = renderDropDown(temparr);
-        console.log(arr);
-        $('.dropdown-menu').html(arr);
+    // let temparr = ['a', 'b', 'c'];
+    // let arr = renderDropDown(temparr);
+    //     console.log(arr);
+    // let planeIds = Plane.createPlaneIdArray();
+    
+    // console.log('planeIds: ', planeIds);
+    // console.log('Plane.loadJSONFromStorage(): ', Plane.loadJSONFromStorage());
+
+    let planeIds = renderDropDown(Plane.loadJSONFromStorage());
+    
+        $('.dropdown-menu').html(planeIds);
     if (fId) {
         let flight = Flight.findById(fId);
         $('#fId').val(flight.id);
@@ -147,3 +157,4 @@ Flight.editFlight = function (fId, event) {
     
     $('#modalFlight').modal('show');
 }
+

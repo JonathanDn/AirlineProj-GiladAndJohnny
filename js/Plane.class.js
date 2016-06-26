@@ -32,6 +32,16 @@ Plane.loadJSONFromStorage = function () {
     return planes;
 }
 
+Plane.createPlaneIdArray = function () {
+    let planes = Plane.loadJSONFromStorage();
+    // console.log('planes: ', planes);
+    let planesArr = planes.map(function(plane){
+         return plane.id;
+    });
+    // console.log('planesArr: ', planesArr);
+    return planesArr;
+}
+
 
 Plane.query = function () {
 
