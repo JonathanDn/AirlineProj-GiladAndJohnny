@@ -2,6 +2,8 @@
 
 const KEY_FLIGHTS = 'flights';
 
+const AIRPORTS = ['TLV', 'SYN', 'AUS', 'AUT', 'GER', 'POL'];
+
 // This is a constructor function
 function Flight(src, dest, date, planeId, id) {
     this.src = src;
@@ -172,9 +174,13 @@ Flight.editFlight = function (fId, event) {
     // console.log('planeIds: ', planeIds);
     // console.log('Plane.loadJSONFromStorage(): ', Plane.loadJSONFromStorage());
 
+    //render select src drop down in modal
+    // let srcStrs = renderDropDown()
+
+    //render select plane drop down in modal
     let planeIds = renderDropDown(Plane.loadJSONFromStorage());
+    $('.selectPlane').html(planeIds);
     
-        $('.selectPlane').html(planeIds);
     if (fId) {
         let flight = Flight.findById(fId);
         $('#fId').val(flight.id);
