@@ -12,30 +12,29 @@
 
 <body>
 
-<nav class="navbar navbar-default">
-  <div class="container-fluid">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="index.html">Puki Airlines</a>
-    </div>
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="index.html">Puki Airlines</a>
+        </div>
 
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
-        <li><a href="passengers.html">Passengers</a></li>
-        <li><a href="planes.html">Planes</a></li>
-        <li><a href="flights.html">Flights</a></li>
-      </ul>
-
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
-</nav>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li><a href="passengers.html">Passengers</a></li>
+            <li><a href="planes.html">Planes</a></li>
+            <li><a href="flights.html">Flights</a></li>
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
 
 
 
@@ -43,15 +42,24 @@
         <!--<img src="img/layout/ca-white.png" class="img-responsive"  />-->
         <img src="img/layout/logo.png" class="img-responsive animated tada" />
         <h1>Puki Airlines <span class="glyphicon glyphicon-music"></span> </h1>
-
-
-
-
     </header>
 
-    <main >
-       <h1>Puki Airlines Homepage</h1>
 
+
+    <main>
+       
+        <div class="routeSelectorCont">
+          <div class="srcCont">
+              <label for="bSrc">Source</label>
+              <select class="selectSrc form-control" name="bSrc" id="bSrc"></select>
+          </div>
+          <div class="destCont">
+              <label for="bDest">Destination</label>
+              <select class="selectDest form-control" name="bDest" id="bDest"></select>
+          </div>
+          <button class="btn btn-primary">Search</button>
+        </div>    
+          
 
     </main>
 
