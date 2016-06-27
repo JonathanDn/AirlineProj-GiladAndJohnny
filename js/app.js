@@ -141,26 +141,13 @@ function renderUserSearchDropDown() {
 }
 
 
-
-
-
-// function saveUserId(pId) {
-//     $('.userSearch').data('data-selectedUser', 'pId'); 
-// }
-
-
-
 function updateUserPhoto(value) {
+    var selectedUserId = $(`option[value="${value}"]`).attr('id');
+    console.log(selectedUserId);
+    
     let users = getFromStorage('passengers');
     let user = users.filter( user => user.name === value )[0];
     $('.userImgCont img').attr('src', user.imgSrc);
-    
-    $(function() {
-        $('.userSearch').on('input',function() {
-            let opt = $('option[value="'+$(this).val()+'"]');
-            alert(opt.length ? opt.attr('id') : 'NO OPTION');
-        });
-    });
 } 
 
 
@@ -176,9 +163,7 @@ function updateUserPhoto(value) {
 //         if (userName === selectedPassengerName) {
 //             // passangers.flights.push(passanger Object);
 //         }
-        
 //     }
-    
 // }
 
 
