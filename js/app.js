@@ -166,7 +166,8 @@ function updateUserPhoto(value) {
 } 
 
 
-//
+// new push
+
 // srcs
 // function renderLocations() {
 //     let srcs = getSrcs();
