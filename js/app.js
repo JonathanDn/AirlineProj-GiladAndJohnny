@@ -66,6 +66,10 @@ function renderSearchDropDown() {
     $('#datalist').html(htmlStr);
 }
 
+function removeDoublesFromDropDown(value) {
+    $('')
+}
+
 
 // srcs
 function renderLocations() {
