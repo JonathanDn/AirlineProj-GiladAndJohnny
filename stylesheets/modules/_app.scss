@@ -7,13 +7,24 @@
 @media(min-width:992px){}
 @media(min-width:1200px){}
 
+.navbar-default {
+  background-color: transparent ;
+  border: none ;
+}
+
+.navbar {
+  margin-bottom: 0px ;
+  position: absolute ;
+  width: 100vw ;
+}
+
 
 body {
   position: relative ;
 }
 
 
-header {
+main {
   
   height: 100vh ;
   background-image: url('../img/headerImg.jpg');
@@ -59,7 +70,7 @@ footer {
   display: flex;
   flex-direction: column;
   max-width: 70vw;
-  margin: auto;
+  // margin: auto;
 }
 
 .flightCard {
@@ -125,13 +136,15 @@ footer {
 
 
 .routeSelectorCont{
-  border: 1px solid black;
+  border: 1px solid #ccc;
+  border-radius: 3px ;
   display: flex;
   height: 20vh;
   width: 80vw;
   justify-content: space-around;
   align-items: center;
   margin: 3vw;
+  background: rgba(250, 250, 250, 0.15);
   .srcCont {
     // margin: 5vw;
     max-width: 50vw;

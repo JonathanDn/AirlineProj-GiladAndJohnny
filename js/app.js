@@ -86,6 +86,7 @@ function searchFlight() {
     console.log(filtered);
 
     renderCards(filtered);
+    
 }
 
 
@@ -111,6 +112,7 @@ function renderCards(flights) {
     return strHtml;
     }).join(' ');
     $('.cardContainer').html(cardsHtml);
+    $(window).animate({scrollTop:$('.cardContainer').offset().top },2000);
 }
 
 
