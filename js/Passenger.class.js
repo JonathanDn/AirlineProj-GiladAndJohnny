@@ -2,15 +2,16 @@
 
 const KEY_PASSENGERS = 'passengers';
 
-const USER_PHOTOS = ['l', 's', 'j', 'k', 'g'];
+const USER_PHOTOS = ['l', 's', 'm', 'k', 'g'];
 
 // This is a constructor function
-function Passenger(name, birthdate, phone, imgSrc, id) {
+function Passenger(name, birthdate, phone, imgSrc, flights, id) {
     this.name = name;
     this.birthdate = new Date(birthdate);
     this.phone = phone ;
     this.imgSrc = getRandImgSrc(USER_PHOTOS);
     this.pin = randomPin();
+    this.flights = [];
     this.id = (id) ? id : Passenger.nextId();
 }
 
@@ -46,7 +47,7 @@ Passenger.query = function () {
     let jsonPassengers = Passenger.loadJSONFromStorage();
 
     Passenger.passengers = jsonPassengers.map(jsonPassenger => {
-        return new Passenger(jsonPassenger.name, jsonPassenger.birthdate, jsonPassenger.phone, jsonPassenger.imgSrc, jsonPassenger.id);
+        return new Passenger(jsonPassenger.name, jsonPassenger.birthdate, jsonPassenger.phone, jsonPassenger.imgSrc, jsonPassenger.flights, jsonPassenger.id);
     })
 
     return Passenger.passengers;
@@ -109,6 +110,8 @@ Passenger.select = function (pId, elRow) {
     let p = Passenger.findById(pId);
     $('.pDetailsName').html(p.name);
     Passenger.showProfile(pId);
+    console.log('p: ', p);
+    
 }
 
 
@@ -147,6 +150,8 @@ Passenger.showProfile = function (pId) {
                    <div class="imgCont"><img src="${p.imgSrc}"/></div> `;
     $('.profileCont').html(htmlStr);
     console.log(p.phone);
+    // console.log('passanger:', p);
+    
     
     
 }

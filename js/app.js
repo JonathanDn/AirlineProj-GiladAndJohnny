@@ -21,7 +21,7 @@
 // init();
 
 
-const AIRPORTS = ['TLV', 'SYN', 'AUS', 'AUT', 'GER', 'POL'];
+const AIRPORTS = ['TLV', 'SYN', 'AUS', 'AUT', 'GER', 'POL', 'JAP'];
 
 
 
@@ -126,7 +126,7 @@ function bookFlight(fId) {
                             <datalist class="here" id="userDatalist"></datalist> 
                         </div>
                         <div class="userImgCont"><img src=""/></div>
-                        <button onclick="assignPassenger()">BOOK</button>
+                        <button onclick="assignPassenger(${fId})">BOOK</button>
                     </div>` ;
     
     $('.popupCont').html(htmlStr).css('display','block');
@@ -136,14 +136,14 @@ function bookFlight(fId) {
 function assignPassenger() {
     let selectedPassengerName = $('#userSearch').val();
     console.log('selectedPassengerName: ', selectedPassengerName);
-    let passangers = Passenger.loadJSONFromStorage();
-    // console.log('passangers: ', passangers);
-    for (var i = 0; i < passangers.length; i++) {
+    let passengers = Passenger.loadJSONFromStorage();
+    // console.log('passengers: ', passengers);
+    for (var i = 0; i < passengers.length; i++) {
         let userName = $('.here option')[i].value;
         
         // console.log('userName: ', userName);
         if (userName === selectedPassengerName) {
-            // passangers.flights.push(passanger Object);
+            // passengers.flights.push(passenger Object);
         }
         
     }
@@ -167,11 +167,33 @@ function updateUserPhoto(value) {
 
 
 
-function assignPassenger() {
+function assignPassenger(flightId) {
     let inputNameVal = $('#userSearch').val();
     var selectedUserId = $(`option[value="${inputNameVal}"]`).attr('id');
     console.log(selectedUserId);
-    console.log('yo!ypyu');
+    let flights = getFlightsFromLocalStorage();
+    let flight = flights.filter(f => f.id === flightId)[0];
+    // console.log('flights: ', flights);
+    // console.log('flight: ', flight);
+    
+    let passengers = Passenger.loadJSONFromStorage();
+    console.log('passengers from storage: ', passengers);
+    passengers.filter( p => {
+        // get the passenger selected and push the flight details to he's p object
+        if (p.name === inputNameVal ) {
+            // console.log('here');
+
+            // don't push double flights
+            for (var i = 0; i < array.length; i++) {
+                if(flight === p.flights[i]) return;               
+            }
+            console.log('p:', p);
+            // push the flight to passenger
+            p.flights.push(flight);
+            // update local storage.
+            saveToStorage('passengers', passengers)
+        }
+    });
 }
 
 
