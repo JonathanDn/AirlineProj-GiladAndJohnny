@@ -126,19 +126,35 @@ function bookFlight(fId) {
                             <datalist class="here" id="userDatalist"></datalist> 
                         </div>
                         <div class="userImgCont"><img src=""/></div>
-                        <button>BOOK</button>
+                        <button onclick="assignPassenger()">BOOK</button>
                     </div>` ;
     
     $('.popupCont').html(htmlStr).css('display','block');
-    renderUserSearchDropDown();
-    
+    renderUserSearchDropDown();   
 }
+
+// function assignPassenger() {
+//     let selectedPassengerName = $('#userSearch').val();
+//     console.log('selectedPassengerName: ', selectedPassengerName);
+//     let passangers = Passenger.loadJSONFromStorage();
+//     // console.log('passangers: ', passangers);
+//     for (var i = 0; i < passangers.length; i++) {
+//         let userName = $('.here option')[i].value;
+        
+//         // console.log('userName: ', userName);
+//         if (userName === selectedPassengerName) {
+//             // passangers.flights.push(passanger Object);
+//         }
+        
+//     }
+    
+// }
 
 
 function renderUserSearchDropDown() {
     let users = getFromStorage('passengers');
     console.log(users);
-    let usereHtmls = users.map( user => `<option value="${user.name}"/>` ).join(' ');
+    let usereHtmls = users.map( user => `<option id="${user.id}" value="${user.name}"/>` ).join(' ');
     $('.here').html(usereHtmls);
 }
 
