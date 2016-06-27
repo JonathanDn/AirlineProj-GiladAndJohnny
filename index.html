@@ -48,13 +48,21 @@
 
     <main>
       
-      <label for="srcSearch">Origin:</label>
-      <input type="text" name="locationSearch" id="locationSearch" list="datalist" placeholder="Select Origin"/>
-      <datalist id="datalist"></datalist> 
-      
-      <label for="destSearch">Destination:</label>
-      <input type="text" name="locationSearch" id="locationSearch" list="datalist" placeholder="Select Destination"/>
-      <datalist id="datalist"></datalist> 
+      <div class="routeSelectorCont">
+        <div class="srcCont">
+          <label for="srcSearch">Origin:</label>
+          <input class="form-control" type="text" name="locationSearch" id="locationSearch" list="datalist" placeholder="Select Origin"/>
+          <datalist id="datalist"></datalist> 
+        </div>
+        <div class="destCont">
+          <label for="destSearch">Destination:</label>
+          <input class="form-control" type="text" name="locationSearch" id="locationSearch" list="datalist" placeholder="Select Destination"/>
+          <datalist id="datalist"></datalist> 
+        </div>
+        <button class="btn btn-primary">Search Flights</button>
+      </div>
+            
+            
       
         <!--<div class="routeSelectorCont">
           <div class="srcCont">
