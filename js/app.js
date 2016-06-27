@@ -76,7 +76,7 @@ function removeDoublesFromDropDown(value) {
 }
 
 
-function renderCards() {
+function searchFlight() {
     let src = $('#srcSearch').val();
     let dest = $('#destSearch').val();
     
@@ -84,6 +84,8 @@ function renderCards() {
     console.log(flights);
     let filtered = flights.filter(f => f.src === src && f.dest === dest );
     console.log(filtered);
+
+    renderCards(filtered);
 }
 
 
@@ -92,6 +94,23 @@ function getFlightsFromLocalStorage() {
     let flights = Flight.loadJSONFromStorage();
     console.log('flights: ', flights);
     return flights;
+}
+
+function renderCards(flights) {
+
+    let cardsHtml = flights.map( f => {
+    let strHtml = `<div class="flightCard">
+                        <div class="topDateBar">${moment(f.date).format('DD-MM-YYYY')}
+                        </div>
+                        <div class="midContainer">
+                            <div class="pukiLogo">logo</div>
+                            <div>${f.src}-${f.dest}</div>
+                            <div><button class="btn-warning">Select</button></div>
+                        </div>
+                    </div>`
+    return strHtml;
+    }).join(' ');
+    $('.cardContainer').html(cardsHtml);
 }
 
 

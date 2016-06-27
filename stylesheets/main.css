@@ -6234,3 +6234,32 @@ footer {
 
 .passengerPage .details .pDetailsName {
   color: orange; }
+
+.cardContainer {
+  display: flex;
+  flex-direction: column;
+  max-width: 70vw;
+  margin: auto; }
+
+.flightCard {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border: 1px solid black;
+  width: 100%;
+  height: 15vw; }
+
+.flightCard .topDateBar {
+  border: 1px solid green;
+  display: flex;
+  justify-content: center; }
+
+.flightCard .midContainer {
+  border: 1px solid purple;
+  display: flex;
+  justify-content: space-around;
+  padding-bottom: 8vh; }
+
+.flightCard .midContainer .pukiLogo {
+  background-image: url(img/pukiLogo.jpg);
+  border-radius: 50%; }
