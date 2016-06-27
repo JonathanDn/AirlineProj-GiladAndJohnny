@@ -86,7 +86,20 @@
                 </div>
                 <div class="modal-body">
                     <form>
-                        <input type="hidden" id="fId" name="fId" >
+                        
+                        <div class="srcFlightCont">
+                            <label for="srcSearch">Origin:</label>
+                            <input onchange="removeDoublesFromDropDown(value)" class="form-control" type="text" name="fSrc" id="fSrc" list="datalist" placeholder="Select Origin"/>
+                            <datalist id="datalist"></datalist> 
+                        </div>
+                        <div class="destFlightCont">
+                            <label for="destSearch">Destination:</label>
+                            <input onchange="removeDoublesFromDropDown(value)" class="form-control" type="text" name="fDest" id="fDest" list="datalist" placeholder="Select Destination"/>
+                            <datalist id="datalist"></datalist> 
+                        </div>
+
+                        
+                        <!--<input type="hidden" id="fId" name="fId" >
                         <div class="form-group">
                             <label for="fSrc">Src</label>
                             <input type="text" class="form-control" id="fSrc" name="fSrc"  placeholder="Source of flight">
@@ -94,7 +107,7 @@
                         <div class="form-group">
                             <label for="fDest">Dest</label>
                             <input type="text" class="form-control" id="fDest" name="fDest" placeholder="Destination of flight">
-                        </div>
+                        </div>-->
                         <div class="form-group">
                             <label for="fDate">Date</label>
                             <input type="date" class="form-control" id="fDate" name="fDate" placeholder="Date of flight">

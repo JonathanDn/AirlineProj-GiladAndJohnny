@@ -48,7 +48,7 @@ Flight.query = function () {
     console.log('QUERY: jsonFlights: ', jsonFlights);
     
     Flight.flights = jsonFlights.map(jsonFlight => {
-        return new Flight(jsonFlight.src, jsonFlight.dest, jsonFlight.date, jsonFlight.id, jsonFlight.planeId);
+        return new Flight(jsonFlight.src, jsonFlight.dest, jsonFlight.date, jsonFlight.planeId, jsonFlight.id);
     })
 
     return Flight.flights;

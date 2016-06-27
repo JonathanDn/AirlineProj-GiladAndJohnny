@@ -37,6 +37,7 @@ function renderByPath(path) {
     switch (path) {
         case '/flights.html':
             Flight.render();
+            renderSearchDropDown();
             break ;
         case '/passengers.html':
             Passenger.render();
@@ -74,26 +75,17 @@ function removeDoublesFromDropDown(value) {
     $(`option[value="${value}"]`).attr('disabled', true).toggleClass('dis');   
 }
 
-// srcs
-function renderLocations() {
-    let srcs = getSrcs();
-    let dests = getDests();
-//   console.log('dropdown srcs',srcs)
 
-   let srcHtml = srcs.map((src) => {
-             return `<option value="${src}">${src}</option>`
-  }).join(' ');
-
-  let destHtml = dests.map((dest) => {
-             return `<option value="${dest}">${dest}</option>`
-  }).join(' ');
-
-  // get elements to show the dropdowns --> show them.
-  $('.selectSrc').html(srcHtml);
-
-
-  $('.selectDest').html(destHtml);
+function renderCards() {
+    let src = $('#srcSearch').val();
+    let dest = $('#destSearch').val();
+    
+    let flights = getFlightsFromLocalStorage();
+    console.log(flights);
+    let filtered = flights.filter(f => f.src === src && f.dest === dest );
+    console.log(filtered);
 }
+
 
 
 function getFlightsFromLocalStorage() {
@@ -102,44 +94,67 @@ function getFlightsFromLocalStorage() {
     return flights;
 }
 
-function getSrcs() {
-    let flights = getFlightsFromLocalStorage();
-    // console.log('flights[0].src: ', flights[0].src);
-    let srcs = [];
-    // check for doubles within this dropdown.
-    for (var i = 0; i < flights.length; i++) {
-        let currSrc = flights[i].src;
-        let isSrcs = false;
-        for (var j = 0; j < srcs.length; j++) {
-            if (srcs[j] === currSrc) isSrcs = true;
-        }
-        if (!isSrcs) {
-            srcs.push(currSrc);
-        }
-    }
-    console.log('srcs: ', srcs);
-    return srcs;
-}
 
-function getDests() {
-    let flights = getFlightsFromLocalStorage();
-    let dests = [];
-    // check for doubles within this dropdown.
-    for (var i = 0; i < flights.length; i++) {
-        let currDest = flights[i].dest;
-        let isDests = false;
-        for (var j = 0; j < dests.length; j++) {
-            if (dests[j] === currDest) isDests = true;
-        }
-        if (!isDests) {
-            dests.push(currDest);
-        }
+
+// srcs
+// function renderLocations() {
+//     let srcs = getSrcs();
+//     let dests = getDests();
+// //   console.log('dropdown srcs',srcs)
+
+//    let srcHtml = srcs.map((src) => {
+//              return `<option value="${src}">${src}</option>`
+//   }).join(' ');
+
+//   let destHtml = dests.map((dest) => {
+//              return `<option value="${dest}">${dest}</option>`
+//   }).join(' ');
+
+//   // get elements to show the dropdowns --> show them.
+//   $('.selectSrc').html(srcHtml);
+
+
+//   $('.selectDest').html(destHtml);
+// }
+
+// function getSrcs() {
+//     let flights = getFlightsFromLocalStorage();
+//     // console.log('flights[0].src: ', flights[0].src);
+//     let srcs = [];
+//     // check for doubles within this dropdown.
+//     for (var i = 0; i < flights.length; i++) {
+//         let currSrc = flights[i].src;
+//         let isSrcs = false;
+//         for (var j = 0; j < srcs.length; j++) {
+//             if (srcs[j] === currSrc) isSrcs = true;
+//         }
+//         if (!isSrcs) {
+//             srcs.push(currSrc);
+//         }
+//     }
+//     console.log('srcs: ', srcs);
+//     return srcs;
+// }
+
+// function getDests() {
+//     let flights = getFlightsFromLocalStorage();
+//     let dests = [];
+//     // check for doubles within this dropdown.
+//     for (var i = 0; i < flights.length; i++) {
+//         let currDest = flights[i].dest;
+//         let isDests = false;
+//         for (var j = 0; j < dests.length; j++) {
+//             if (dests[j] === currDest) isDests = true;
+//         }
+//         if (!isDests) {
+//             dests.push(currDest);
+//         }
         
-    }
-    console.log('dests: ', dests);
+//     }
+//     console.log('dests: ', dests);
     
-    return dests;
-}
+//     return dests;
+// }
 
 
 // tests:
