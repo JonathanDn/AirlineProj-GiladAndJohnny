@@ -21,7 +21,7 @@
 // init();
 
 
-const AIRPORTS = ['TLV', 'SYN', 'AUS', 'AUT', 'GER', 'POL', 'JAP'];
+const AIRPORTS = ['TLV', 'SYN', 'AUS', 'AUT', 'GER', 'POL', 'JAP', 'USA'];
 
 
 
@@ -130,7 +130,7 @@ function bookFlight(fId) {
                         <div class="userImgCont"><img src=""/></div>
                         <button onclick="assignPassenger(${fId})">BOOK</button>
                     </div>` ;
-    
+    // reveal pop up
     $('.popupCont').html(htmlStr).css('display','block');
     renderUserSearchDropDown();   
 }
@@ -172,28 +172,35 @@ function updateUserPhoto(value) {
 function assignPassenger(flightId) {
     let inputNameVal = $('#userSearch').val();
     var selectedUserId = $(`option[value="${inputNameVal}"]`).attr('id');
-    console.log(selectedUserId);
+    // console.log(selectedUserId);
     let flights = getFlightsFromLocalStorage();
     let flight = flights.filter(f => f.id === flightId)[0];
     // console.log('flights: ', flights);
     // console.log('flight: ', flight);
     
     let passengers = Passenger.loadJSONFromStorage();
-    console.log('passengers from storage: ', passengers);
+    // console.log('passengers from storage: ', passengers);
     passengers.filter( p => {
+        // VERIFY IT'S WORKING THE IF
         // get the passenger selected and push the flight details to he's p object
         if (p.name === inputNameVal ) {
             // console.log('here');
 
-            // don't push double flights
-            for (var i = 0; i < array.length; i++) {
-                if(flight === p.flights[i]) return;               
+            // Don't push double flights
+            // console.log('flight: ', flight);
+            for (var i = 0; i < p.flights.length; i++) {
+                // console.log('p.flights[i]: ', p.flights[i]);
+                if(flight.id === p.flights[i].id) {
+                    // console.log('found double');
+                    return;
+                }
             }
             console.log('p:', p);
             // push the flight to passenger
             p.flights.push(flight);
             // update local storage.
-            saveToStorage('passengers', passengers)
+            // saveToStorage('passengers', passengers)
+            
         }
     });
 }
