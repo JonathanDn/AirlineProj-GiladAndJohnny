@@ -120,10 +120,10 @@ function bookFlight(fId) {
                         <h2>Select User</h2>
                         <div class="selectUserDrop">
                             <label for="userSearch">Select User:</label>
-                            <input onchange="updateUserPhoto(value)" class="form-control" 
+                            <input onchange="updateUserPhoto(value)" class="form-control userSearch" 
                                 type="text" name="userSearch" id="userSearch" list="userDatalist" 
                                 placeholder="Select User"/>
-                            <datalist class="here" id="userDatalist"></datalist> 
+                            <datalist class="userDatalist" id="userDatalist"></datalist> 
                         </div>
                         <div class="userImgCont"><img src=""/></div>
                         <button onclick="assignPassenger()">BOOK</button>
@@ -132,6 +132,37 @@ function bookFlight(fId) {
     $('.popupCont').html(htmlStr).css('display','block');
     renderUserSearchDropDown();   
 }
+
+function renderUserSearchDropDown() {
+    let users = getFromStorage('passengers');
+    console.log(users);
+    let usereHtmls = users.map( user => `<option id="${user.id}" value="${user.name}"/>` ).join(' ');
+    $('.userDatalist').html(usereHtmls);
+}
+
+
+
+
+
+// function saveUserId(pId) {
+//     $('.userSearch').data('data-selectedUser', 'pId'); 
+// }
+
+
+
+function updateUserPhoto(value) {
+    let users = getFromStorage('passengers');
+    let user = users.filter( user => user.name === value )[0];
+    $('.userImgCont img').attr('src', user.imgSrc);
+    
+    $(function() {
+        $('.userSearch').on('input',function() {
+            let opt = $('option[value="'+$(this).val()+'"]');
+            alert(opt.length ? opt.attr('id') : 'NO OPTION');
+        });
+    });
+} 
+
 
 // function assignPassenger() {
 //     let selectedPassengerName = $('#userSearch').val();
@@ -151,19 +182,6 @@ function bookFlight(fId) {
 // }
 
 
-function renderUserSearchDropDown() {
-    let users = getFromStorage('passengers');
-    console.log(users);
-    let usereHtmls = users.map( user => `<option id="${user.id}" value="${user.name}"/>` ).join(' ');
-    $('.here').html(usereHtmls);
-}
-
-
-function updateUserPhoto(value) {
-    let users = getFromStorage('passengers');
-    let user = users.filter( user => user.name === value )[0];
-    $('.userImgCont img').attr('src', user.imgSrc);
-} 
 
 
 
