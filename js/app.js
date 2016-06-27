@@ -62,14 +62,23 @@ function renderDropDown(planes) {
 }
 
 function renderSearchDropDown() {
-    let htmlStr = AIRPORTS.map( loc => `<option value="${loc}"/>` ).join(' ');
+    let idCounter = 1;
+    let htmlStr = AIRPORTS.map( loc => {
+        console.log('idCounter: ', idCounter);
+        let strHtml = `<option id="${idCounter}" value="${loc}"/>` 
+        idCounter++;
+        return strHtml;
+        }).join(' ');
     $('#datalist').html(htmlStr);
 }
 
 function removeDoublesFromDropDown(value) {
-    $('')
-}
+    // if already have the 'dis' class --> remove disabled attr + class 'dis' (RESET)
+    $('.dis').attr('disabled', false).toggleClass('dis');
 
+    // onchange --> add disabled attr + class 'dis'
+    $(`option[value="${value}"]`).attr('disabled', true).toggleClass('dis');   
+}
 
 // srcs
 function renderLocations() {

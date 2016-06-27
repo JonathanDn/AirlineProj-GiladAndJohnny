@@ -51,12 +51,12 @@
       <div class="routeSelectorCont">
         <div class="srcCont">
           <label for="srcSearch">Origin:</label>
-          <input class="form-control" type="text" name="locationSearch" id="locationSearch" list="datalist" placeholder="Select Origin"/>
+          <input onchange="removeDoublesFromDropDown(value)" class="form-control" type="text" name="locationSearch" id="locationSearch" list="datalist" placeholder="Select Origin"/>
           <datalist id="datalist"></datalist> 
         </div>
         <div class="destCont">
           <label for="destSearch">Destination:</label>
-          <input class="form-control" type="text" name="locationSearch" id="locationSearch" list="datalist" placeholder="Select Destination"/>
+          <input onchange="removeDoublesFromDropDown(value)" class="form-control" type="text" name="locationSearch" id="locationSearch" list="datalist" placeholder="Select Destination"/>
           <datalist id="datalist"></datalist> 
         </div>
         <button class="btn btn-primary">Search Flights</button>
