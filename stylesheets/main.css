@@ -6296,3 +6296,51 @@ footer {
   display: flex;
   flex-direction: column;
   align-items: center; }
+
+.routeSelectorCont {
+  border: 1px solid black;
+  display: flex;
+  height: 20vh;
+  width: 80vw;
+  justify-content: space-around;
+  align-items: center;
+  margin: 3vw; }
+
+.routeSelectorCont .srcCont {
+  max-width: 50vw; }
+
+.routeSelectorCont .destCont {
+  max-width: 50vw; }
+
+.routeSelectorCont .srchFlightBtn {
+  max-height: 5vh; }
+
+::-webkit-input-placeholder {
+  font-size: 14px;
+  font-weight: bold; }
+
+:-moz-placeholder {
+  /* older Firefox*/
+  font-size: 14px;
+  font-weight: bold; }
+
+::-moz-placeholder {
+  /* Firefox 19+ */
+  font-size: 14px;
+  font-weight: bold; }
+
+:-ms-input-placeholder {
+  font-size: 14px;
+  font-weight: bold; }
+
+@media (max-width: 580px) {
+  main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; }
+  .routeSelectorCont {
+    flex-direction: column;
+    justify-content: space-around;
+    height: 30vh;
+    width: 60vw; } }
