@@ -128,7 +128,7 @@ function bookFlight(fId) {
                         <div class="userImgCont"><img src=""/></div>
                         <button onclick="assignPassenger(${fId})">BOOK</button>
                     </div>` ;
-    
+    // reveal pop up
     $('.popupCont').html(htmlStr).css('display','block');
     renderUserSearchDropDown();   
 }
@@ -184,8 +184,8 @@ function assignPassenger(flightId) {
         if (p.name === inputNameVal ) {
             // console.log('here');
 
-            // don't push double flights
-            console.log('flight: ', flight);
+            // Don't push double flights
+            // console.log('flight: ', flight);
             for (var i = 0; i < p.flights.length; i++) {
                 // console.log('p.flights[i]: ', p.flights[i]);
                 if(flight.id === p.flights[i].id) {
@@ -193,11 +193,12 @@ function assignPassenger(flightId) {
                     return;
                 }
             }
-            // console.log('p:', p);
+            console.log('p:', p);
             // push the flight to passenger
             p.flights.push(flight);
             // update local storage.
             // saveToStorage('passengers', passengers)
+            
         }
     });
 }
