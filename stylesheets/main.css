@@ -6344,3 +6344,18 @@ footer {
     justify-content: space-around;
     height: 30vh;
     width: 60vw; } }
+
+.passengerPage {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; }
+
+.passengerPage .addPassengerContainer {
+  border: 1px solid black;
+  display: flex;
+  justify-content: center;
+  width: 50vw; }
+
+.passengerPage .table {
+  width: 80vw; }
