@@ -107,3 +107,72 @@ footer {
     
   }
 }
+
+
+.routeSelectorCont{
+  border: 1px solid black;
+  display: flex;
+  height: 20vh;
+  width: 80vw;
+  justify-content: space-around;
+  align-items: center;
+  margin: 3vw;
+  .srcCont {
+    // margin: 5vw;
+    max-width: 50vw;
+  }
+  .destCont {
+    // margin: 5vw;
+    max-width: 50vw;  
+  }
+  .srchFlightBtn {
+    // margin: 5vw;
+    max-height: 5vh;
+  }
+}
+
+::-webkit-input-placeholder {
+ font-size: 14px;
+ font-weight: bold;
+//  color: green;
+//  text-transform: uppercase;
+//  text-transform: uppercase;
+//  text-align: center;
+}
+
+:-moz-placeholder { /* older Firefox*/
+ font-size:14px;
+ font-weight: bold;
+//  color: green;
+//  text-transform: uppercase;
+//  text-align: center;
+}
+::-moz-placeholder { /* Firefox 19+ */ 
+ font-size: 14px;
+ font-weight: bold;
+//  color: green; 
+//  text-transform: uppercase;
+//  text-align: center;
+} 
+:-ms-input-placeholder { 
+ font-size: 14px; 
+ font-weight: bold;
+//  color: green;
+//  text-transform: uppercase;
+//  text-align: center;
+}
+
+@media (max-width: 580px) {
+  main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .routeSelectorCont {
+    flex-direction: column;
+    justify-content: space-around;
+    height: 30vh; 
+    width: 60vw;
+  }
+}
