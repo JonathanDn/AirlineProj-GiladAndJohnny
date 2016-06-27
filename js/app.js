@@ -151,8 +151,16 @@ function updateUserPhoto(value) {
 } 
 
 
+function assignPassenger() {
+    let inputNameVal = $('#userSearch').val();
+    var selectedUserId = $(`option[value="${inputNameVal}"]`).attr('id');
+    console.log(selectedUserId);
+}
+
 // function assignPassenger() {
 //     let selectedPassengerName = $('#userSearch').val();
+    
+    
 //     console.log('selectedPassengerName: ', selectedPassengerName);
 //     let passangers = Passenger.loadJSONFromStorage();
 //     // console.log('passangers: ', passangers);
