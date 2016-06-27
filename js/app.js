@@ -103,7 +103,7 @@ function renderCards(flights) {
                         <div class="topDateBar">${moment(f.date).format('DD-MM-YYYY')}
                         </div>
                         <div class="midContainer">
-                            <div class="pukiLogo">logo</div>
+                            <div class="pukiLogo"><img class="img-responsive" src="img/pukiLogo.jpg"></div>
                             <div>${f.src}-${f.dest}</div>
                             <div><button class="btn-warning">Select</button></div>
                         </div>
