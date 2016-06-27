@@ -62,13 +62,7 @@ function renderDropDown(planes) {
 }
 
 function renderSearchDropDown() {
-    let idCounter = 1;
-    let htmlStr = AIRPORTS.map( loc => {
-        console.log('idCounter: ', idCounter);
-        let strHtml = `<option id="${idCounter}" value="${loc}"/>` 
-        idCounter++;
-        return strHtml;
-        }).join(' ');
+    let htmlStr = AIRPORTS.map( loc => `<option value="${loc}"/>` ).join(' ');
     $('#datalist').html(htmlStr);
 }
 
