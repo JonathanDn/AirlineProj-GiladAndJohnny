@@ -105,13 +105,49 @@ function renderCards(flights) {
                         <div class="midContainer">
                             <div class="pukiLogo"><img class="img-responsive" src="img/pukiLogo.jpg"></div>
                             <div>${f.src}-${f.dest}</div>
-                            <div><button class="btn-warning">Select</button></div>
+                            <div><button onclick="bookFlight(${f.id})" class="btn-warning">Select</button></div>
                         </div>
                     </div>`
     return strHtml;
     }).join(' ');
     $('.cardContainer').html(cardsHtml);
 }
+
+
+function bookFlight(fId) {
+    // console.log(fId);
+    let htmlStr = `<div class="chooseUserCont">
+                        <h2>Select User</h2>
+                        <div class="selectUserDrop">
+                            <label for="userSearch">Select User:</label>
+                            <input onchange="updateUserPhoto(value)" class="form-control" 
+                                type="text" name="userSearch" id="userSearch" list="userDatalist" 
+                                placeholder="Select User"/>
+                            <datalist class="here" id="userDatalist"></datalist> 
+                        </div>
+                        <div class="userImgCont"><img src=""/></div>
+                        <button>BOOK</button>
+                    </div>` ;
+    
+    $('.popupCont').html(htmlStr).css('display','block');
+    renderUserSearchDropDown();
+    
+}
+
+
+function renderUserSearchDropDown() {
+    let users = getFromStorage('passengers');
+    console.log(users);
+    let usereHtmls = users.map( user => `<option value="${user.name}"/>` ).join(' ');
+    $('.here').html(usereHtmls);
+}
+
+
+function updateUserPhoto(value) {
+    let users = getFromStorage('passengers');
+    let user = users.filter( user => user.name === value )[0];
+    $('.userImgCont img').attr('src', user.imgSrc);
+} 
 
 
 
