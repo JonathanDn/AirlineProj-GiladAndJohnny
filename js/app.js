@@ -120,10 +120,10 @@ function bookFlight(fId) {
                         <h2>Select User</h2>
                         <div class="selectUserDrop">
                             <label for="userSearch">Select User:</label>
-                            <input onchange="updateUserPhoto(value)" class="form-control userSearch" 
+                            <input onchange="updateUserPhoto(value)" class="form-control" 
                                 type="text" name="userSearch" id="userSearch" list="userDatalist" 
                                 placeholder="Select User"/>
-                            <datalist class="userDatalist" id="userDatalist"></datalist> 
+                            <datalist class="here" id="userDatalist"></datalist> 
                         </div>
                         <div class="userImgCont"><img src=""/></div>
                         <button onclick="assignPassenger()">BOOK</button>
@@ -133,22 +133,38 @@ function bookFlight(fId) {
     renderUserSearchDropDown();   
 }
 
+function assignPassenger() {
+    let selectedPassengerName = $('#userSearch').val();
+    console.log('selectedPassengerName: ', selectedPassengerName);
+    let passangers = Passenger.loadJSONFromStorage();
+    // console.log('passangers: ', passangers);
+    for (var i = 0; i < passangers.length; i++) {
+        let userName = $('.here option')[i].value;
+        
+        // console.log('userName: ', userName);
+        if (userName === selectedPassengerName) {
+            // passangers.flights.push(passanger Object);
+        }
+        
+    }
+    
+}
+
+
 function renderUserSearchDropDown() {
     let users = getFromStorage('passengers');
     console.log(users);
     let usereHtmls = users.map( user => `<option id="${user.id}" value="${user.name}"/>` ).join(' ');
-    $('.userDatalist').html(usereHtmls);
+    $('.here').html(usereHtmls);
 }
 
 
 function updateUserPhoto(value) {
-    var selectedUserId = $(`option[value="${value}"]`).attr('id');
-    console.log(selectedUserId);
-    
     let users = getFromStorage('passengers');
     let user = users.filter( user => user.name === value )[0];
     $('.userImgCont img').attr('src', user.imgSrc);
 } 
+
 
 
 function assignPassenger() {
@@ -176,9 +192,6 @@ function assignPassenger() {
 //         }
 //     }
 // }
-
-
-
 
 
 // srcs

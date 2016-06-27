@@ -134,32 +134,21 @@ footer {
 ::-webkit-input-placeholder {
  font-size: 14px;
  font-weight: bold;
-//  color: green;
-//  text-transform: uppercase;
-//  text-transform: uppercase;
-//  text-align: center;
 }
 
 :-moz-placeholder { /* older Firefox*/
  font-size:14px;
  font-weight: bold;
-//  color: green;
-//  text-transform: uppercase;
-//  text-align: center;
 }
+
 ::-moz-placeholder { /* Firefox 19+ */ 
  font-size: 14px;
  font-weight: bold;
-//  color: green; 
-//  text-transform: uppercase;
-//  text-align: center;
 } 
+
 :-ms-input-placeholder { 
  font-size: 14px; 
  font-weight: bold;
-//  color: green;
-//  text-transform: uppercase;
-//  text-align: center;
 }
 
 @media (max-width: 580px) {
@@ -174,5 +163,22 @@ footer {
     justify-content: space-around;
     height: 30vh; 
     width: 60vw;
+  }
+}
+
+// passenger new layout.
+.passengerPage {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;  
+  .addPassengerContainer {
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    width: 50vw;
+  }
+  .table {
+    width: 80vw;
   }
 }
