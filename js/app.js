@@ -133,22 +133,22 @@ function bookFlight(fId) {
     renderUserSearchDropDown();   
 }
 
-function assignPassenger() {
-    let selectedPassengerName = $('#userSearch').val();
-    console.log('selectedPassengerName: ', selectedPassengerName);
-    let passengers = Passenger.loadJSONFromStorage();
-    // console.log('passengers: ', passengers);
-    for (var i = 0; i < passengers.length; i++) {
-        let userName = $('.here option')[i].value;
+// function assignPassenger() {
+//     let selectedPassengerName = $('#userSearch').val();
+//     console.log('selectedPassengerName: ', selectedPassengerName);
+//     let passengers = Passenger.loadJSONFromStorage();
+//     // console.log('passengers: ', passengers);
+//     for (var i = 0; i < passengers.length; i++) {
+//         let userName = $('.here option')[i].value;
         
-        // console.log('userName: ', userName);
-        if (userName === selectedPassengerName) {
-            // passengers.flights.push(passenger Object);
-        }
+//         // console.log('userName: ', userName);
+//         if (userName === selectedPassengerName) {
+//             // passengers.flights.push(passenger Object);
+//         }
         
-    }
+//     }
     
-}
+// }
 
 
 function renderUserSearchDropDown() {
@@ -196,7 +196,7 @@ function assignPassenger(flightId) {
             console.log('p:', p);
             // push the flight to passenger
             p.flights.push(flight);
-            // update local storage.
+            // update local storage...
             // saveToStorage('passengers', passengers)
             
         }
