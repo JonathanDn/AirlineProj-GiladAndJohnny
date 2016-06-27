@@ -6212,13 +6212,15 @@ button.close {
     display: none !important; } }
 
 .navbar-default {
-  background-color: transparent;
+  background-color: rgba(0, 0, 0, 0.1);
+  color: white;
   border: none; }
 
 .navbar {
   margin-bottom: 0px;
   position: absolute;
-  width: 100vw; }
+  width: 100vw;
+  color: white; }
 
 body {
   position: relative;
