@@ -14,22 +14,37 @@ body {
 
 
 header {
-    text-align: center;
-  display:flex;
-  flex-flow: row wrap;
-  background-color: indigo;
-  padding:10px;
-  margin-bottom: 10px;
-  h1 {
-    color:gold;
-    transition: all 3s;
+  
+  height: 100vh ;
+  background-image: url('../img/headerImg.jpg');
+  background-size: cover ; 
+  // position: center ;
+  margin-bottom: 50px ;
 
-    &:hover {
-        color:lightblue;
-        font-size: 3em;
-    }
-  }
+  display: flex ;
+  flex-direction: column ;
+  justify-content: center ;
+  align-items: center ;
+  text-align: center ;
+
 }
+// header {
+//   text-align: center;
+//   display:flex;
+//   flex-flow: row wrap;
+//   // background-color: indigo;
+//   // padding:10px;
+//   margin-bottom: 10px;
+//   h1 {
+//     color:gold;
+//     transition: all 3s;
+
+//     &:hover {
+//         color:lightblue;
+//         font-size: 3em;
+//     }
+//   }
+// }
 
 footer {
   background-color: black;
