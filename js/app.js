@@ -155,7 +155,7 @@ function assignPassenger() {
     let inputNameVal = $('#userSearch').val();
     var selectedUserId = $(`option[value="${inputNameVal}"]`).attr('id');
     console.log(selectedUserId);
-    console.log('yo!');
+    console.log('yo!ypyu');
 }
 
 
