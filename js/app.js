@@ -201,10 +201,16 @@ function assignPassenger(flightId) {
             // update local storage...
             // saveToStorage('passengers', passengers)
             
+            closePopup();
         }
     });
 }
 
+
+function closePopup() {
+    $('.chooseUserCont').remove();
+    $('.popupCont').css('display','none');
+}
 
 
 // function assignPassenger() {
