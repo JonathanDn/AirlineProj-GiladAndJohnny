@@ -21,6 +21,7 @@
 
 body {
   position: relative ;
+  background: #ddd ;
 }
 
 
@@ -69,39 +70,44 @@ footer {
 .cardContainer {
   display: flex;
   flex-direction: column;
+  align-items: center ;
   max-width: 70vw;
-  // margin: auto;
-}
+  margin: 0 auto;
 
-.flightCard {
-  display: flex;
-  flex-direction: column;
-  
-  justify-content: space-between;
-  border: 1px solid dimgray;
-  border-radius: 3vh;  
-  width: 100%;
-  height: 20vh;
-  .topDateBar {
-    border: 1px solid dimgrey;
-    border-radius: 3vh;
-    display: flex;  
-    justify-content: center;
-  }
-  .midContainer {
-    border: 1px solid dimgrey;
-    border-radius: 3vh;    
+  .flightCard {
+    background: white ;
     display: flex;
-    justify-content: space-around;
-    align-items: center;
-    max-height: 150px;
-    img {
-      max-height: 100px;
-      border-radius: 50%;
+    flex-direction: column;
+    justify-content: space-between;
+    // border: 1px solid dimgray;
+    border-radius: 3px ;;  
+    width: 100%;
+    height: 20vh;
+    margin: 5px ;
+    padding: 10px ;
+    box-shadow: 0px 0px 0px 1px white inset, 
+                0px 0px 0px 5px #ddd inset;
+    .topDateBar {
+      // border: 1px solid dimgrey;
+      // border-radius: 3;
+      display: flex;  
+      justify-content: center;
+    }
+    .midContainer {
+      // border: 1px solid dimgrey;
+      // border-radius: 3vh;    
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      max-height: 150px;
+      img {
+        max-height: 100px;
+        border-radius: 50%;
+      }
     }
   }
-}
 
+}
 
 .popupCont {
   display: none ;

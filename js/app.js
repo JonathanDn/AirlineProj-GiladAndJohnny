@@ -112,7 +112,7 @@ function renderCards(flights) {
     return strHtml;
     }).join(' ');
     $('.cardContainer').html(cardsHtml);
-    $(window).animate({scrollTop:$('.cardContainer').offset().top },2000);
+    $('html').animate({scrollTop:$('.cardContainer').offset().top },2000);
 }
 
 
@@ -206,7 +206,8 @@ function assignPassenger(flightId) {
     });
 }
 
-
+//closes popup (of course) - removes content of popup container
+// and changes display of cntainer to 'none'
 function closePopup() {
     $('.chooseUserCont').remove();
     $('.popupCont').css('display','none');
