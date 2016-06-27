@@ -21,6 +21,9 @@
 // init();
 
 
+const AIRPORTS = ['TLV', 'SYN', 'AUS', 'AUT', 'GER', 'POL'];
+
+
 
 $(document).ready(()=>{
 
@@ -43,7 +46,8 @@ function renderByPath(path) {
             break ;
         // index.html is default
         default :
-            renderLocations();
+            // renderLocations();
+            renderSearchDropDown();
             break ;
     }
     
@@ -56,6 +60,12 @@ function renderDropDown(planes) {
              return `<option value="${plane.id}">PA-${plane.id}-${plane.model}-${plane.seatCount}</option>`
   }).join(' ');
 }
+
+function renderSearchDropDown() {
+    let htmlStr = AIRPORTS.map( loc => `<option value="${loc}"/>` ).join(' ');
+    $('#datalist').html(htmlStr);
+}
+
 
 // srcs
 function renderLocations() {

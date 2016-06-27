@@ -2,7 +2,6 @@
 
 const KEY_FLIGHTS = 'flights';
 
-const AIRPORTS = ['TLV', 'SYN', 'AUS', 'AUT', 'GER', 'POL'];
 
 // This is a constructor function
 function Flight(src, dest, date, planeId, id) {
