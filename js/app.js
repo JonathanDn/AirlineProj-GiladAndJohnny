@@ -112,7 +112,7 @@ function renderCards(flights) {
     return strHtml;
     }).join(' ');
     $('.cardContainer').html(cardsHtml);
-    $('html').animate({scrollTop:$('.cardContainer').offset().top },2000);
+    // $(window).animate({scrollTop:$('.cardContainer').offset().top },2000);
 }
 
 

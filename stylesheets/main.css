@@ -6212,15 +6212,43 @@ button.close {
     display: none !important; } }
 
 .navbar-default {
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: transparent;
   color: white;
   border: none; }
+
+.navbar-default .navbar-toggle {
+  border: none; }
+
+.navbar-default .navbar-toggle:hover {
+  background-color: rgba(250, 250, 250, 0.2); }
+
+.navbar-default .navbar-toggle:focus {
+  background-color: rgba(250, 250, 250, 0.2); }
 
 .navbar {
   margin-bottom: 0px;
   position: absolute;
   width: 100vw;
-  color: white; }
+  color: white;
+  text-shadow: 0px 0px 5px black; }
+
+.navbar-default .navbar-toggle .icon-bar {
+  background-color: #fff; }
+
+/* title */
+.navbar-default .navbar-brand {
+  color: #fff; }
+
+.navbar-default .navbar-brand:hover,
+.navbar-default .navbar-brand:focus {
+  color: #fff; }
+
+.navbar-default .navbar-nav > li > a {
+  color: #fff; }
+
+.navbar-default .navbar-nav > .dropdown {
+  border-top-color: #fff;
+  border-bottom-color: #fff; }
 
 body {
   position: relative;
